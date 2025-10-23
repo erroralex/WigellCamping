@@ -1,4 +1,5 @@
 ✅ Planerade uppgifter:
+
 □ Skapa Member-klass
 □ Skapa Item abstrakt basklass
 □ Skapa minst två konkreta subklasser av Item
