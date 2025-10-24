@@ -13,9 +13,10 @@ public class Vehicle extends Item {
 
     }
 
-    public Vehicle(boolean hasEngine, String color) {
-    this.hasEngine = hasEngine;
-    this.color = color;
+    public Vehicle(double price, boolean hasEngine, String color) {
+        super(price);
+        this.hasEngine = hasEngine;
+        this.color = color;
     }
 
 //──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────

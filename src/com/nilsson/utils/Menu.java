@@ -46,17 +46,19 @@ public class Menu {
 
 //──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
-    public void whatToDo() {
+    public void displayMenuScreen() {
         clearScreen();
         PrintColor.cyan(textBlocks());
         System.out.println("\nVälkommen till Wigell Camping! Vad vill du göra idag?");
         System.out.println("───────────────────────────────────────────────────────");
-        PrintColor.cyan("\t\t[1] - Hyra ut produkt");
-        PrintColor.cyan("\t\t[2] - Visa uthyrda produkter");
-        PrintColor.cyan("\t\t[3] - Returnera produkt(er)");
+        PrintColor.cyan("\t\t[1] - Lista alla tillgängliga produkter");
+        PrintColor.cyan("\t\t[2] - Hyra ut produkt");
+        PrintColor.cyan("\t\t[3] - Visa uthyrda produkter");
+        PrintColor.cyan("\t\t[4] - Returnera produkt(er)");
         System.out.println("───────────────────────────────────────────────────────");
-        PrintColor.cyan("\t\t[4] - Visa medlemsskap");
-        PrintColor.cyan("\t\t[5] - Ändra medlemsskap");
+        PrintColor.cyan("\t\t[5] - Skapa nytt medlemsskap");
+        PrintColor.cyan("\t\t[6] - Visa medlemsskap");
+        PrintColor.cyan("\t\t[7] - Ändra medlemsskap");
         System.out.println("───────────────────────────────────────────────────────");
         PrintColor.red("\t\t[0] - Avsluta programmet");
         System.out.println("───────────────────────────────────────────────────────");
