@@ -13,10 +13,9 @@ public class RecreationalVehicle extends Vehicle {
 
     }
 
-    public RecreationalVehicle(boolean hasEngine, String color, int maxOccupants, double price) {
-        super(hasEngine, color);
+    public RecreationalVehicle(double price, boolean hasEngine, String color, int maxOccupants) {
+        super(price, hasEngine, color);
         this.maxOccupants = maxOccupants;
-        this.price = price;
     }
 
 //──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
@@ -29,12 +28,25 @@ public class RecreationalVehicle extends Vehicle {
         this.maxOccupants = maxOccupants;
     }
 
-    public double getPrice() {
-        return price;
-    }
+//──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
-    public void setPrice(double price) {
-        this.price = price;
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Fordon: ");
+
+        if (isHasEngine()) {
+            sb.append("Husbil, ");
+        } else {
+            sb.append("Husvagn, ");
+        }
+
+        sb.append(maxOccupants).append(" passagerare")
+                .append(", färg '").append(getColor()).append("'")
+                .append(", Grundpris: ").append(getPrice())
+                .append(":- per dygn");
+
+        return sb.toString();
     }
 
 //──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────

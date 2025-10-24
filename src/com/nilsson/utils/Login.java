@@ -1,5 +1,7 @@
 package com.nilsson.utils;
 
+//──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
 public class Login {
 
     public boolean isLoggedIn = false;
