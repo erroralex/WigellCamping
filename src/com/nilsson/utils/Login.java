@@ -5,6 +5,7 @@ package com.nilsson.utils;
 public class Login {
 
     public boolean isLoggedIn = false;
+    Start start = new Start();
 
 //──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
@@ -14,7 +15,7 @@ public class Login {
         PrintColor.cyan(menu.textBlocks());
         PrintColor.green("\nVar vänlig skriv in ditt användarnamn: ");
 
-        String userName = menu.scanner.nextLine().trim();
+        String userName = start.scanner.nextLine().trim();
 
         if ((userName == null) || (userName.isEmpty())) {
             PrintColor.red("Du måste skriva in ditt användarnamn!");
@@ -28,13 +29,13 @@ public class Login {
         String userPass;
 
         while (!this.isLoggedIn) {
-            userPass = menu.scanner.nextLine();
+            userPass = start.scanner.nextLine();
 
             if (correctPassword.equals(userPass)) {
                 this.isLoggedIn = true;
                 System.out.println("Inloggning godkänd! Välkommen " + userName +
                         "! \nTryck [ENTER] för att fortsätta: ");
-                menu.scanner.nextLine();
+                start.scanner.nextLine();
                 break;
 
             } else {
