@@ -80,7 +80,7 @@ public class MemberRegistry {
         if (membersList.isEmpty()) {
             PrintColor.red("\nInga registrerade medlemmar!");
         }
-        PrintColor.green("\nTryck [ENTER] för att fortsätta: ");
+        //PrintColor.green("\nTryck [ENTER] för att fortsätta: ");
     }
 
 //──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
@@ -101,8 +101,11 @@ public class MemberRegistry {
 
         PrintColor.green("\nMedlemsnivå:");
         System.out.println("[Student]: 80:-/mån. Samma som Standard, men 20% rabatt för våra studerande medlemmar.");
+        System.out.println("\tStudenter har även en liten rabatt på grundpriset.");
         System.out.println("[Standard]: 100:-/mån. Vårat trygga val. Försäkring på grundnivå med en självrisk på 3000:- för fordon");
+        System.out.println("\tStandardmedlemmar betalar grundpris.");
         System.out.println("[Premium]: 150:-/mån. För kunden som vill vara trygg. Allrisk, helförsäkring och självrisk på endast 1000:- för fordon");
+        System.out.println("\tPremium-medlemmar betalar lite mer för bättre försäkring och service och kan hyra utrustning längre.");
         PrintColor.green("────────────────────────────────────────────────────────────────────────────────────");
         PrintColor.green("Skriv in [medlemsnivå] och [ENTER]:");
         String membershipLevel = scanner.nextLine();
@@ -110,7 +113,7 @@ public class MemberRegistry {
         Member newMember = new Member(memberRegistry.getUniqueID(), firstName, lastName, membershipLevel, null);
         memberRegistry.addMember(newMember);
 
-        System.out.println("Nytt medlemsskap skapat! Tryck [ENTER] för att fortsätta: ");
+        System.out.println("Nytt medlemsskap skapat!");
     }
 
 //──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────

@@ -138,6 +138,8 @@ public class Menu {
 
                         case 3:
                             // Visa uthyrda
+                            rental.showRented();
+                            scanner.nextLine();
                             break;
 
                         case 4:
