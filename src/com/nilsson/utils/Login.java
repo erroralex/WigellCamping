@@ -32,7 +32,8 @@ public class Login {
 
             if (correctPassword.equals(userPass)) {
                 this.isLoggedIn = true;
-                System.out.println("Inloggning godkänd! Tryck [ENTER] för att fortsätta: ");
+                System.out.println("Inloggning godkänd! Välkommen " + userName +
+                        "! \nTryck [ENTER] för att fortsätta: ");
                 menu.scanner.nextLine();
                 break;
 
