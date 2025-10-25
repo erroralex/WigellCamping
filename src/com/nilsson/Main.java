@@ -1,6 +1,6 @@
 package com.nilsson;
 
-import com.nilsson.utils.Menu;
+import com.nilsson.utils.Start;
 
 //──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
@@ -10,9 +10,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Menu menu = new Menu();
+        Start startProgram = new Start();
 
-        menu.start();
+        startProgram.start();
     }
 
 //──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────

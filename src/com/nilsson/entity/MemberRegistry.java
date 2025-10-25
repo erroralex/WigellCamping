@@ -70,6 +70,63 @@ public class MemberRegistry {
 
 //──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
+    public void editMember(Scanner scanner) {
+        if (membersList.isEmpty()) {
+            PrintColor.red("\nDet finns inga medlemmar att redigera!");
+            return;
+        }
+
+        PrintColor.green("Välj medlem att redigera:");
+        printMembers();
+        PrintColor.green("Ange medlems-ID: ");
+        int memberId = scanner.nextInt();
+        scanner.nextLine();
+
+        Member memberToEdit = null;
+        for (Member member : membersList) {
+            if (member.getId() == memberId) {
+                memberToEdit = member;
+                break;
+            }
+        }
+
+        if (memberToEdit == null) {
+            PrintColor.red("\nIngen medlem hittades med det angivna medlems-nummret!");
+            return;
+        }
+
+        System.out.println("Redigera medlemsuppgifter för: " +
+                memberToEdit.getFirstName() + " " + memberToEdit.getLastName());
+
+        PrintColor.green("\nFörnamn [nuvarande: " + memberToEdit.getFirstName() + "]: ");
+        String newFirstName = scanner.nextLine();
+
+        if (!newFirstName.isEmpty()) {
+            memberToEdit.setFirstName(newFirstName);
+        }
+
+        PrintColor.green("Efternamn [nuvarande: " + memberToEdit.getLastName() + "]: ");
+        String newLastName = scanner.nextLine();
+        if (!newLastName.isEmpty()) {
+            memberToEdit.setLastName(newLastName);
+        }
+
+        PrintColor.green("\nMedlemsnivå [nuvarande: " + memberToEdit.getMembershipLevel() + "]: ");
+        PrintColor.green("────────────────────────────────────────────────────────────────────────────────────");
+        memberLevelInfo();
+        PrintColor.green("────────────────────────────────────────────────────────────────────────────────────");
+        PrintColor.green("Skriv in [medlemsnivå] och [ENTER]:");
+        String newMembershipLevel = scanner.nextLine();
+        if (!newMembershipLevel.isEmpty()) {
+            memberToEdit.setMembershipLevel(newMembershipLevel);
+        }
+
+        PrintColor.green("Medlemensuppgifter uppdaterade!");
+        scanner.nextLine();
+    }
+
+//──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
     public void printMembers() {
         System.out.println("Registrerade medlemmar:");
         int i = 1;
@@ -100,20 +157,28 @@ public class MemberRegistry {
         String lastName = scanner.nextLine();
 
         PrintColor.green("\nMedlemsnivå:");
-        System.out.println("[Student]: 80:-/mån. Samma som Standard, men 20% rabatt för våra studerande medlemmar.");
-        System.out.println("\tStudenter har även en liten rabatt på grundpriset.");
-        System.out.println("[Standard]: 100:-/mån. Vårat trygga val. Försäkring på grundnivå med en självrisk på 3000:- för fordon");
-        System.out.println("\tStandardmedlemmar betalar grundpris.");
-        System.out.println("[Premium]: 150:-/mån. För kunden som vill vara trygg. Allrisk, helförsäkring och självrisk på endast 1000:- för fordon");
-        System.out.println("\tPremium-medlemmar betalar lite mer för bättre försäkring och service och kan hyra utrustning längre.");
-        PrintColor.green("────────────────────────────────────────────────────────────────────────────────────");
+        memberLevelInfo();
         PrintColor.green("Skriv in [medlemsnivå] och [ENTER]:");
         String membershipLevel = scanner.nextLine();
-
+        PrintColor.green("────────────────────────────────────────────────────────────────────────────────────");
         Member newMember = new Member(memberRegistry.getUniqueID(), firstName, lastName, membershipLevel, null);
         memberRegistry.addMember(newMember);
 
         System.out.println("Nytt medlemsskap skapat!");
+    }
+
+//──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+    public void memberLevelInfo() {
+        String info = """                
+                [Student]: 80:-/mån. Samma som Standard, men 20% rabatt för våra studerande medlemmar.
+                       \tStudenter har även en liten rabatt på grundpriset.
+                [Standard]: 100:-/mån. Vårat trygga val. Försäkring på grundnivå med en självrisk på 3000:- för fordon.
+                        \tStandardmedlemmar betalar grundpris.
+                [Premium]: 150:-/mån. För kunden som vill vara trygg. Allrisk, helförsäkring och självrisk på endast 1000:- för fordon.
+                       \tPremium-medlemmar betalar lite mer för bättre försäkring och service och kan hyra utrustning längre.                                
+                """;
+        System.out.println(info);
     }
 
 //──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
