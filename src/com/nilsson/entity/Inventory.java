@@ -1,7 +1,6 @@
 package com.nilsson.entity;
 
 import com.nilsson.utils.PrintColor;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,13 +13,24 @@ public class Inventory {
 
 //──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
-    public Inventory() {
-
+    private Inventory() {
+        initializeInventory();
     }
 
     public Inventory(List<Vehicle> vehicleList, List<Gear> gearList) {
         this.vehicleList = vehicleList;
         this.gearList = gearList;
+    }
+
+//──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+    public static Inventory getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
+
+    // Static inner class for singleton pattern
+    private static class SingletonHolder {
+        private static final Inventory INSTANCE = new Inventory();
     }
 
 //──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
@@ -100,13 +110,6 @@ public class Inventory {
 
 //──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
-    public Inventory getInitializedInventory() {
-        initializeInventory();
-        return this;
-    }
-
-//──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-
     public void printVehicles() {
         PrintColor.green("Fordon i lager:");
         int i = 1;
@@ -114,16 +117,22 @@ public class Inventory {
             System.out.println(i + ": " + vehicle.toString());
             i++;
         }
+        if (vehicleList.isEmpty()) {
+            PrintColor.red("\nInga fordon i lager.");
+        }
     }
 
 //──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
-    public void printGears() {
+    public void printGear() {
         PrintColor.green("\nUtrustning i lager:");
         int i = 1;
         for (Gear gear : gearList) {
             System.out.println(i + ": " + gear.toString());
             i++;
+        }
+        if (gearList.isEmpty()) {
+            PrintColor.red("\nIngen utrustning i lager.");
         }
     }
 
@@ -131,7 +140,7 @@ public class Inventory {
 
     public void printInventory() {
         this.printVehicles();
-        this.printGears();
+        this.printGear();
     }
 
 //──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
