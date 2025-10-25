@@ -1,20 +1,32 @@
 package com.nilsson.entity;
 
-//──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-
+import com.nilsson.utils.Menu;
 import com.nilsson.utils.PrintColor;
-
 import java.util.*;
+
+//──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
 public class MemberRegistry {
 
-    private List<Member> membersList;
+    private List<Member> membersList = new ArrayList<>();
+    Menu menu = new Menu();
 
 //──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
-    public MemberRegistry() {
-        this.membersList = new ArrayList<>();
+    private MemberRegistry() {
+        initializeMembers();
     }
+//──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+    public static MemberRegistry getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
+
+    // Static inner class for singleton pattern
+    private static class SingletonHolder {
+        private static final MemberRegistry INSTANCE = new MemberRegistry();
+    }
+
 //──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
     public void addMember(Member member) {
@@ -58,17 +70,15 @@ public class MemberRegistry {
 
 //──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
-    public MemberRegistry getInitializedMembers() {
-        initializeMembers();
-        return this;
-    }
-
-//──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-
     public void printMembers() {
         System.out.println("Registrerade medlemmar:");
+        int i = 1;
         for (Member member : membersList) {
-            System.out.println(member.toString());
+            System.out.println(i + ": " + member.toString());
+            i++;
+        }
+        if (membersList.isEmpty()) {
+            PrintColor.red("\nInga registrerade medlemmar!");
         }
         PrintColor.green("\nTryck [ENTER] för att fortsätta: ");
     }
@@ -83,12 +93,18 @@ public class MemberRegistry {
         System.out.println("\nFyll i information för nytt medlemsskap:");
 
         PrintColor.green("Förnamn: ");
+        scanner.nextLine();
         String firstName = scanner.nextLine();
 
         PrintColor.green("Efternamn: ");
         String lastName = scanner.nextLine();
 
-        PrintColor.green("Medlemsnivå (Premium/Standard/Student): ");
+        PrintColor.green("\nMedlemsnivå:");
+        System.out.println("[Student]: 80:-/mån. Samma som Standard, men 20% rabatt för våra studerande medlemmar.");
+        System.out.println("[Standard]: 100:-/mån. Vårat trygga val. Försäkring på grundnivå med en självrisk på 3000:- för fordon");
+        System.out.println("[Premium]: 150:-/mån. För kunden som vill vara trygg. Allrisk, helförsäkring och självrisk på endast 1000:- för fordon");
+        PrintColor.green("────────────────────────────────────────────────────────────────────────────────────");
+        PrintColor.green("Skriv in [medlemsnivå] och [ENTER]:");
         String membershipLevel = scanner.nextLine();
 
         Member newMember = new Member(memberRegistry.getUniqueID(), firstName, lastName, membershipLevel, null);

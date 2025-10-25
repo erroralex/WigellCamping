@@ -3,7 +3,6 @@ package com.nilsson.utils;
 import com.nilsson.entity.Inventory;
 import com.nilsson.entity.MemberRegistry;
 import com.nilsson.entity.Rental;
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -76,8 +75,8 @@ public class Menu {
 
         boolean isRunning = true;
         Login login = new Login();
-        Inventory inventory = new Inventory().getInitializedInventory();
-        MemberRegistry memberRegistry = new MemberRegistry().getInitializedMembers();
+        Inventory inventory = Inventory.getInstance();
+        MemberRegistry memberRegistry = MemberRegistry.getInstance();
         Rental rental = new Rental();
 
 
@@ -132,8 +131,8 @@ public class Menu {
                             // Hyra ut
                             clearScreen();
                             PrintColor.cyan(textBlocks());
-                            inventory.printInventory();
                             rental.rentLogic();
+                            //memberRegistry.printMembers();
                             //menu.scanner.nextLine();
                             break;
 
