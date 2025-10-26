@@ -1,24 +1,23 @@
 package com.nilsson.entity;
 
-//──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+//── Klass & Attribut ──────────────────────────────────────────────────────────────────────────────────────────────────
 
 public class RecreationalVehicle extends Vehicle {
 
     private int maxOccupants;
-    private double price;
 
-//──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+//── Konstruktorer ─────────────────────────────────────────────────────────────────────────────────────────────────────
 
     public RecreationalVehicle() {
 
     }
 
-    public RecreationalVehicle(double price, boolean hasEngine, String color, int maxOccupants) {
-        super(price, hasEngine, color);
+    public RecreationalVehicle(double dailyPrice, boolean hasEngine, String color, int maxOccupants) {
+        super(dailyPrice, hasEngine, color);
         this.maxOccupants = maxOccupants;
     }
 
-//──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+//── Getters & Setters ─────────────────────────────────────────────────────────────────────────────────────────────────
 
     public int getMaxOccupants() {
         return maxOccupants;
@@ -28,7 +27,7 @@ public class RecreationalVehicle extends Vehicle {
         this.maxOccupants = maxOccupants;
     }
 
-//──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+//── Metoder ───────────────────────────────────────────────────────────────────────────────────────────────────────────
 
     @Override
     public String toString() {

@@ -4,19 +4,20 @@ import com.nilsson.utils.Menu;
 import com.nilsson.utils.PrintColor;
 import java.util.*;
 
-//──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+//── Klass & Attribut ──────────────────────────────────────────────────────────────────────────────────────────────────
 
 public class MemberRegistry {
 
     private List<Member> membersList = new ArrayList<>();
     Menu menu = new Menu();
 
-//──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+//── Konstruktorer ─────────────────────────────────────────────────────────────────────────────────────────────────────
 
     private MemberRegistry() {
         initializeMembers();
     }
-//──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+//── Getters & Setters ─────────────────────────────────────────────────────────────────────────────────────────────────
 
     public static MemberRegistry getInstance() {
         return SingletonHolder.INSTANCE;
@@ -27,7 +28,7 @@ public class MemberRegistry {
         private static final MemberRegistry INSTANCE = new MemberRegistry();
     }
 
-//──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+//── Metoder ───────────────────────────────────────────────────────────────────────────────────────────────────────────
 
     public void addMember(Member member) {
         membersList.add(member);

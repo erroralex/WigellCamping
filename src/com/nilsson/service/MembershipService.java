@@ -1,6 +1,5 @@
 package com.nilsson.service;
 
-//RentalService och MembershipService ska innehålla affärslogiken
 import com.nilsson.pricing.PremiumPricing;
 import com.nilsson.pricing.StandardPricing;
 import com.nilsson.pricing.StudentPricing;
