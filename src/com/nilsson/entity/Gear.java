@@ -36,7 +36,7 @@ public class Gear extends Item {
             sb.append("Ryggsäck, ");
         }
 
-        sb.append("Grundpris: ").append(getPrice())
+        sb.append("Grundpris: ").append(getDailyPrice())
                 .append(":- per dygn");
 
         return sb.toString();
