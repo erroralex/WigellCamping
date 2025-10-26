@@ -1,25 +1,12 @@
-package com.nilsson.service;
+package com.nilsson.pricing;
 
 //──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
 public interface PricePolicy {
 
-    double calculatePrice(int days, String strategyType);
+    double calculatePrice(int days);
+    double getMonthlyCost();
 
 //──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
-    public class PricePolicies {
-
-        public static double studentCalculatePrice(int days) {
-            return 1.3 * days;
-        }
-
-        public static double standardCalculatePrice(int days) {
-            return 1.5 * days;
-        }
-
-        public static double premiumCalculatePrice(int days) {
-            return 2 * days;
-        }
-    }
 }

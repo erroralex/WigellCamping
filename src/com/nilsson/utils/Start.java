@@ -86,6 +86,8 @@ public class Start {
 
                         case 4:
                             // returnera
+                            rental.returnItem();
+                            scanner.nextLine();
                             break;
 
                         case 5:
