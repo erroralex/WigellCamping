@@ -3,6 +3,8 @@ package com.nilsson.utils;
 import com.nilsson.entity.Inventory;
 import com.nilsson.entity.MemberRegistry;
 import com.nilsson.entity.Rental;
+import com.nilsson.service.RentalService;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -22,6 +24,7 @@ public class Start {
         Inventory inventory = Inventory.getInstance();
         MemberRegistry memberRegistry = MemberRegistry.getInstance();
         Rental rental = new Rental();
+        RentalService rentalService = new RentalService(memberRegistry);
 
 
         while (isRunning) {
@@ -110,6 +113,16 @@ public class Start {
 
                         case 8:
                             //summera intäkter
+                            /**
+                             *FEL! Hittar inte lista
+                             **/
+                            double totalProfit = rentalService.calculateTotalProfit();
+                            if (totalProfit > 0) {
+                                PrintColor.green("Total Profit: " + totalProfit);
+                            } else {
+                                PrintColor.red("No rentals found to calculate profit.");
+                            }
+                            scanner.nextLine();
                             break;
 
                         case 0:

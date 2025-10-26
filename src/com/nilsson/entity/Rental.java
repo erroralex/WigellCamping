@@ -1,5 +1,6 @@
 package com.nilsson.entity;
 
+import com.nilsson.service.MembershipService;
 import com.nilsson.utils.Menu;
 import com.nilsson.utils.PrintColor;
 import com.nilsson.utils.Start;
@@ -18,6 +19,7 @@ public class Rental {
     Start start = new Start();
     Inventory inv = Inventory.getInstance();
     MemberRegistry memberRegistry = MemberRegistry.getInstance();
+    MembershipService membershipService = new MembershipService();
 
 //──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
@@ -191,9 +193,13 @@ public class Rental {
             System.out.println("Du hyr nu ut " + vehicle + "\ntill " + member);
             System.out.print("Antal dagar att hyra ut: ");
             int days = start.scanner.nextInt();
+
             Rental rental = new Rental(member, days);
             rentedItems.put(vehicle, rental);
+            double totalPrice = membershipService.calculatePrice(days,member.getMembershipLevel());
+
             PrintColor.green("\nDu har hyrt ut " + vehicle + " \ntill " + member + " i " + days + " dagar.");
+            PrintColor.green("Total kostnad: " + totalPrice + ":-");
             start.scanner.nextLine();
         } else {
             PrintColor.red("Ogiltligt val.");
@@ -207,9 +213,13 @@ public class Rental {
             System.out.println("Du hyr nu ut " + gear + "\ntill " + member);
             System.out.print("Antal dagar att hyra ut: ");
             int days = start.scanner.nextInt();
+
             Rental rental = new Rental(member, days);
             rentedItems.put(gear, rental);
+            double totalPrice = membershipService.calculatePrice(days, member.getMembershipLevel());
+
             PrintColor.green("\nDu har hyrt ut " + gear + " \ntill " + member + " i " + days + " dagar.");
+            PrintColor.green("Total kostnad: " + totalPrice + ":-");
             start.scanner.nextLine();
         } else {
             PrintColor.red("Ogiltligt val.");

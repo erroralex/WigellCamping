@@ -17,7 +17,7 @@ public class StudentPricing implements PricePolicy {
 
     @Override
     public double getMonthlyCost() {
-        return standardPricing.getMonthlyCost();
+        return standardPricing.getMonthlyCost() * STUDENT_DISCOUNT;
     }
 
 //── Metoder ───────────────────────────────────────────────────────────────────────────────────────────────────────────

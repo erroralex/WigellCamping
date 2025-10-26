@@ -183,4 +183,15 @@ public class MemberRegistry {
 
 //──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
+    public Member findMemberById(int memberId) {
+        for (Member member : membersList) {
+            if (member.getId() == memberId) {
+                return member;
+            }
+        }
+        return null;
+    }
+
+//──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
 }

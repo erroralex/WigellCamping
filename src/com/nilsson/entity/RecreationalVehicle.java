@@ -43,7 +43,7 @@ public class RecreationalVehicle extends Vehicle {
 
         sb.append(maxOccupants).append(" passagerare")
                 .append(", färg '").append(getColor()).append("'")
-                .append(", Grundpris: ").append(getPrice())
+                .append(", Grundpris: ").append(getDailyPrice())
                 .append(":- per dygn");
 
         return sb.toString();

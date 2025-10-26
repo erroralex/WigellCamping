@@ -18,3 +18,10 @@ public class Main {
 //──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
 }
+/**
+ * ATT GÖRA:
+ * Koppla samman pris och uthyrning
+ * Summera intäkter
+ * Felhantering
+ * UI fix för consistency
+ */

@@ -9,9 +9,9 @@ import com.nilsson.pricing.StudentPricing;
 
 public class MembershipService {
 
-    private StandardPricing standardPricing = new StandardPricing(10);
-    private StudentPricing studentPricing = new StudentPricing(8);
-    private PremiumPricing premiumPricing = new PremiumPricing();
+    private StandardPricing standardPricing = new StandardPricing(1);
+    private StudentPricing studentPricing = new StudentPricing(0.8);
+    private PremiumPricing premiumPricing = new PremiumPricing(1.2);
 
 //── Metoder ───────────────────────────────────────────────────────────────────────────────────────────────────────────
 

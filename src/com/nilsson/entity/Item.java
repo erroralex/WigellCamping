@@ -4,7 +4,7 @@ package com.nilsson.entity;
 
 public abstract class Item {
 
-    private double price;
+    private double dailyPrice;
 
 //──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
@@ -12,18 +12,24 @@ public abstract class Item {
 
     }
 
-    public Item(double price) {
-        this.price = price;
+    public Item(double dailyPrice) {
+        this.dailyPrice = dailyPrice;
     }
 
 //──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
-    public double getPrice() {
-        return price;
+    public double getDailyPrice() {
+        return dailyPrice;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setDailyPrice(double dailyPrice) {
+        this.dailyPrice = dailyPrice;
+    }
+
+//──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+    public double getTotalPrice(int days) {
+        return dailyPrice * days;
     }
 
 //──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────

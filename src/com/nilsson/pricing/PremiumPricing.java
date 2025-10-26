@@ -4,21 +4,27 @@ package com.nilsson.pricing;
 
 public class PremiumPricing implements PricePolicy {
 
-    private final double PREMIUM_COST = 150;
+    private final StandardPricing standardPricing;
+    private final double PREMIUM_RATE = 1.2;
 
 //── Konstruktorer ─────────────────────────────────────────────────────────────────────────────────────────────────────
+
+    public PremiumPricing(double dailyRate) {
+        this.standardPricing = new StandardPricing(dailyRate);
+    }
+
 //── Getters & Setters ─────────────────────────────────────────────────────────────────────────────────────────────────
 
     @Override
     public double getMonthlyCost() {
-        return PREMIUM_COST;
+        return standardPricing.getMonthlyCost() * PREMIUM_RATE;
     }
 
 //── Metoder ───────────────────────────────────────────────────────────────────────────────────────────────────────────
 
     @Override
     public double calculatePrice(int days) {
-        return PREMIUM_COST;
+        return standardPricing.calculatePrice(days) * PREMIUM_RATE;
     }
 
 }
