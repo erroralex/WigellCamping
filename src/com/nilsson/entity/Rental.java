@@ -10,12 +10,39 @@ import java.util.*;
 
 public class Rental {
 
-    private Map<Item, Member> rentedItems = new HashMap<>();
+    private Map<Item, Rental> rentedItems = new HashMap<>();
+    private Member member;
+    private int days;
 
     Menu menu = new Menu();
     Start start = new Start();
     Inventory inv = Inventory.getInstance();
     MemberRegistry memberRegistry = MemberRegistry.getInstance();
+
+//──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+    public Rental() {
+
+    }
+
+    public Rental(Member member, int days) {
+        this.member = member;
+        this.days = days;
+    }
+
+//──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+    public Map<Item, Rental> getRentedItems() {
+    return new HashMap<>(rentedItems);
+    }
+
+    public Member getMember() {
+        return this.member;
+    }
+
+    public int getDays() {
+        return this.days;
+    }
 
 //──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
@@ -25,6 +52,7 @@ public class Rental {
         PrintColor.cyan("[1]: Fordon \n[2]: Utrustning");
         PrintColor.red("[0]: Avbryt");
         int choice = start.scanner.nextInt();
+        start.scanner.nextLine();
 
         switch (choice) {
 
@@ -62,6 +90,7 @@ public class Rental {
             PrintColor.cyan("[1]: Ny medlem \n[2]: Befintlig medlem");
             PrintColor.red("[0]: Avbryt");
             menu.menuChoice = start.scanner.nextInt();
+            start.scanner.nextLine();
 
             switch (menu.menuChoice) {
 
@@ -159,8 +188,13 @@ public class Rental {
 
     private void rentVehicle(Vehicle vehicle, Member member) {
         if (inv.getVehicleList().remove(vehicle)) {
-            rentedItems.put(vehicle, member);
             System.out.println("Du hyr nu ut " + vehicle + "\ntill " + member);
+            System.out.print("Antal dagar att hyra ut: ");
+            int days = start.scanner.nextInt();
+            Rental rental = new Rental(member, days);
+            rentedItems.put(vehicle, rental);
+            PrintColor.green("\nDu har hyrt ut " + vehicle + " \ntill " + member + " i " + days + " dagar.");
+            start.scanner.nextLine();
         } else {
             PrintColor.red("Ogiltligt val.");
         }
@@ -170,8 +204,13 @@ public class Rental {
 
     private void rentGear(Gear gear, Member member) {
         if (inv.getGearList().remove(gear)) {
-            rentedItems.put(gear, member);
             System.out.println("Du hyr nu ut " + gear + "\ntill " + member);
+            System.out.print("Antal dagar att hyra ut: ");
+            int days = start.scanner.nextInt();
+            Rental rental = new Rental(member, days);
+            rentedItems.put(gear, rental);
+            PrintColor.green("\nDu har hyrt ut " + gear + " \ntill " + member + " i " + days + " dagar.");
+            start.scanner.nextLine();
         } else {
             PrintColor.red("Ogiltligt val.");
         }
@@ -181,16 +220,51 @@ public class Rental {
 
     public void showRented() {
         if (rentedItems.isEmpty()) {
-            PrintColor.red("Ingen utlånad utrustning att visa.");
+            PrintColor.red("Ingen uthyrd utrustning att visa.");
         } else {
+            int i = 1;
             PrintColor.green("────────────────────────────────────────────────────────────────────────────────────");
-            System.out.println("Utlånad Utrustning:");
-            for (Map.Entry<Item, Member> entry : rentedItems.entrySet()) {
+            PrintColor.green("Uthyrd Utrustning:");
+            for (Map.Entry<Item, Rental> entry : rentedItems.entrySet()) {
                 Item item = entry.getKey();
-                Member member = entry.getValue();
-                System.out.println(item + " hyrt av: " + member);
+                Member member = entry.getValue().getMember();
+                int days = entry.getValue().getDays();
+                System.out.println("\n[" + i + "]: " + item + " \nhyrt av: " + member + ", i " + days + " dagar.");
+                System.out.println("-------------------------------------------------------------------------------");
+                i++;
             }
             PrintColor.green("────────────────────────────────────────────────────────────────────────────────────");
+        }
+    }
+
+//──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+    public void returnItem() {
+        if (rentedItems.isEmpty()) {
+            PrintColor.red("Det finns inga utlånade föremål att lämna tillbaka.");
+            return;
+        }
+
+        showRented();
+        PrintColor.green("Vilket föremål vill du återlämna? Tryck [siffra] och [ENTER]:");
+        int index = start.scanner.nextInt() - 1;
+        start.scanner.nextLine();
+
+        if (index >= 0 && index < rentedItems.size()) {
+            Map.Entry<Item, Rental> entry = new ArrayList<>(rentedItems.entrySet()).get(index);
+            Item itemToReturn = entry.getKey();
+            Rental rental = entry.getValue();
+
+            rentedItems.remove(itemToReturn);
+
+            if (itemToReturn instanceof Vehicle) {
+                inv.getVehicleList().add((Vehicle) itemToReturn);
+            } else if (itemToReturn instanceof Gear) {
+                inv.getGearList().add((Gear) itemToReturn);
+            }
+            PrintColor.green("Du har återlämnat " + itemToReturn + " till lagret.");
+        } else {
+            PrintColor.red("Ogiltligt val. Var vänlig och ange ett giltligt föremål från listan");
         }
     }
 

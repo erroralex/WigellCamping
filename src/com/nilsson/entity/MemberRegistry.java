@@ -150,7 +150,7 @@ public class MemberRegistry {
         System.out.println("\nFyll i information för nytt medlemsskap:");
 
         PrintColor.green("Förnamn: ");
-        scanner.nextLine();
+        //scanner.nextLine();
         String firstName = scanner.nextLine();
 
         PrintColor.green("Efternamn: ");
@@ -171,12 +171,12 @@ public class MemberRegistry {
 
     public void memberLevelInfo() {
         String info = """                
-                [Student]: 80:-/mån. Samma som Standard, men 20% rabatt för våra studerande medlemmar.
-                       \tStudenter har även en liten rabatt på grundpriset.
-                [Standard]: 100:-/mån. Vårat trygga val. Försäkring på grundnivå med en självrisk på 3000:- för fordon.
-                        \tStandardmedlemmar betalar grundpris.
-                [Premium]: 150:-/mån. För kunden som vill vara trygg. Allrisk, helförsäkring och självrisk på endast 1000:- för fordon.
-                       \tPremium-medlemmar betalar lite mer för bättre försäkring och service och kan hyra utrustning längre.                                
+                \n[Student]: 80:-/mån. Samma som Standard, men 20% rabatt för våra studerande medlemmar.
+              \t\t\tStudenter har även en liten rabatt på grundpriset.
+                \n[Standard]: 100:-/mån. Vårat trygga val. Försäkring på grundnivå med en självrisk på 3000:- för fordon.
+              \t\t\tStandardmedlemmar betalar grundpris.
+                \n[Premium]: 150:-/mån. För kunden som vill vara trygg. Allrisk, helförsäkring och självrisk på endast 1000:- för fordon.
+              \t\t\tPremium-medlemmar betalar lite mer för bättre försäkring och service och kan hyra utrustning längre.                                
                 """;
         System.out.println(info);
     }

@@ -4,20 +4,19 @@ package com.nilsson.service;
 
 //──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
-public class RentalService implements PricePolicy{
+import com.nilsson.pricing.PricePolicy;
+
+public class RentalService implements PricePolicy {
+
 
     @Override
-    public double calculatePrice(int days, String strategyType) {
-        switch (strategyType.toLowerCase()) {
-            case "standard":
-                return PricePolicies.standardCalculatePrice(days);
-            case "student":
-                return PricePolicies.studentCalculatePrice(days);
-            case "premium":
-                return PricePolicies.premiumCalculatePrice(days);
-            default:
-                throw new IllegalArgumentException("Ogiltlig medlemskapssnivå");
-        }
+    public double calculatePrice(int days) {
+        return 0;
+    }
+
+    @Override
+    public double getMonthlyCost() {
+        return 0;
     }
 
 //──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
