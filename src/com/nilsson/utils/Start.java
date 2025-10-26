@@ -4,17 +4,16 @@ import com.nilsson.entity.Inventory;
 import com.nilsson.entity.MemberRegistry;
 import com.nilsson.entity.Rental;
 import com.nilsson.service.RentalService;
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-//──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+//── Klass & Attribut ──────────────────────────────────────────────────────────────────────────────────────────────────
 
 public class Start {
 
     public Scanner scanner = new Scanner(System.in);
 
-//──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+//── Metoder ───────────────────────────────────────────────────────────────────────────────────────────────────────────
 
     public void start() {
 
@@ -23,9 +22,8 @@ public class Start {
         Login login = new Login();
         Inventory inventory = Inventory.getInstance();
         MemberRegistry memberRegistry = MemberRegistry.getInstance();
-        Rental rental = new Rental();
-        RentalService rentalService = new RentalService(memberRegistry);
-
+        Rental rental = Rental.getInstance();
+        RentalService rentalService = new RentalService(rental);
 
         while (isRunning) {
             if (!login.isLoggedIn) {
@@ -66,7 +64,7 @@ public class Start {
                     scanner.nextLine();
 
                     switch (menu.menuChoice) {
-                        case 1:
+                        case 1: // Lista tillgängliga
                             menu.clearScreen();
                             PrintColor.cyan(menu.textBlocks());
                             inventory.printInventory();
@@ -74,58 +72,50 @@ public class Start {
                             scanner.nextLine();
                             break;
 
-                        case 2:
-                            // Hyra ut
+                        case 2: // Hyra ut
                             menu.clearScreen();
                             PrintColor.cyan(menu.textBlocks());
                             rental.rentLogic();
                             break;
 
-                        case 3:
-                            // Visa uthyrda
+                        case 3: // Visa uthyrda
                             rental.showRented();
                             scanner.nextLine();
                             break;
 
                         case 4:
-                            // returnera
+                            // Returnera föremål
                             rental.returnItem();
                             scanner.nextLine();
                             break;
 
-                        case 5:
-                            // Add members
+                        case 5: // Lägg till medlemmar
                             menu.clearScreen();
                             menu.textBlocks();
                             memberRegistry.createNewMember(memberRegistry, scanner);
                             scanner.nextLine();
                             break;
 
-                        case 6:
+                        case 6: // Visa medlemsskap
                             memberRegistry.printMembers();
                             scanner.nextLine();
                             break;
 
-                        case 7:
-                            // Edit members
+                        case 7: // Redigera medlemmar
                             memberRegistry.editMember(scanner);
                             break;
 
-                        case 8:
-                            //summera intäkter
-                            /**
-                             *FEL! Hittar inte lista
-                             **/
+                        case 8: // Summera intäkter
                             double totalProfit = rentalService.calculateTotalProfit();
                             if (totalProfit > 0) {
-                                PrintColor.green("Total Profit: " + totalProfit);
+                                PrintColor.green("Beräknad intäkt av uthyrda föremål: " + totalProfit + ":-");
                             } else {
-                                PrintColor.red("No rentals found to calculate profit.");
+                                PrintColor.red("Hittade inga uthyrda föremål.");
                             }
                             scanner.nextLine();
                             break;
 
-                        case 0:
+                        case 0: // Logga ut
                             PrintColor.green("Tack för att du använde programmet!");
                             login.isLoggedIn = false;
                             break;

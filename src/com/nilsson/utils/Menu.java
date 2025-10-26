@@ -1,19 +1,13 @@
 package com.nilsson.utils;
 
-import com.nilsson.entity.Inventory;
-import com.nilsson.entity.MemberRegistry;
-import com.nilsson.entity.Rental;
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
-//──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+//── Klass & Attribut ──────────────────────────────────────────────────────────────────────────────────────────────────
 
 public class Menu {
 
     public int menuChoice;
     private boolean isRunning = true;
 
-//──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+//── Metoder ───────────────────────────────────────────────────────────────────────────────────────────────────────────
 
     public void clearScreen() {
         for (int i = 0; i < 50; i++) {

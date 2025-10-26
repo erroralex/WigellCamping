@@ -1,25 +1,25 @@
 package com.nilsson.entity;
 
-//──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+//── Klass & Attribut ──────────────────────────────────────────────────────────────────────────────────────────────────
 
 public class Vehicle extends Item {
 
     private boolean hasEngine;
     private String color;
 
-//──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+//── Konstruktorer ─────────────────────────────────────────────────────────────────────────────────────────────────────
 
     public Vehicle() {
 
     }
 
-    public Vehicle(double price, boolean hasEngine, String color) {
-        super(price);
+    public Vehicle(double dailyPrice, boolean hasEngine, String color) {
+        super(dailyPrice);
         this.hasEngine = hasEngine;
         this.color = color;
     }
 
-//──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+//── Getters & Setters ─────────────────────────────────────────────────────────────────────────────────────────────────
 
     public boolean isHasEngine() {
         return hasEngine;

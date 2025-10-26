@@ -4,13 +4,13 @@ import com.nilsson.service.MembershipService;
 import com.nilsson.utils.Menu;
 import com.nilsson.utils.PrintColor;
 import com.nilsson.utils.Start;
-
 import java.util.*;
 
-//──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+//── Klass & Attribut ──────────────────────────────────────────────────────────────────────────────────────────────────
 
 public class Rental {
 
+    private static final Rental INSTANCE = new Rental();
     private Map<Item, Rental> rentedItems = new HashMap<>();
     private Member member;
     private int days;
@@ -21,9 +21,9 @@ public class Rental {
     MemberRegistry memberRegistry = MemberRegistry.getInstance();
     MembershipService membershipService = new MembershipService();
 
-//──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+//── Konstruktorer ─────────────────────────────────────────────────────────────────────────────────────────────────────
 
-    public Rental() {
+    private Rental() {
 
     }
 
@@ -32,10 +32,14 @@ public class Rental {
         this.days = days;
     }
 
-//──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+//── Getters & Setters ─────────────────────────────────────────────────────────────────────────────────────────────────
 
     public Map<Item, Rental> getRentedItems() {
-    return new HashMap<>(rentedItems);
+    return rentedItems;
+    }
+
+    public void setRentedItems(Map<Item, Rental> rentedItems) {
+        this.rentedItems = rentedItems;
     }
 
     public Member getMember() {
@@ -46,7 +50,11 @@ public class Rental {
         return this.days;
     }
 
-//──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+    public static Rental getInstance() {
+        return INSTANCE;
+    }
+
+//── Metoder ───────────────────────────────────────────────────────────────────────────────────────────────────────────
 
     public void rentLogic() {
 

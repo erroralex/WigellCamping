@@ -4,14 +4,14 @@ import com.nilsson.utils.PrintColor;
 import java.util.ArrayList;
 import java.util.List;
 
-//──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+//── Klass & Attribut ──────────────────────────────────────────────────────────────────────────────────────────────────
 
 public class Inventory {
 
     private List<Vehicle> vehicleList = new ArrayList<>();
     private List<Gear> gearList = new ArrayList<>();
 
-//──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+//── Konstruktorer ─────────────────────────────────────────────────────────────────────────────────────────────────────
 
     private Inventory() {
         initializeInventory();
@@ -22,7 +22,7 @@ public class Inventory {
         this.gearList = gearList;
     }
 
-//──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+//── Getters & Setters ─────────────────────────────────────────────────────────────────────────────────────────────────
 
     public static Inventory getInstance() {
         return SingletonHolder.INSTANCE;
@@ -32,8 +32,6 @@ public class Inventory {
     private static class SingletonHolder {
         private static final Inventory INSTANCE = new Inventory();
     }
-
-//──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
     public List<Vehicle> getVehicleList() {
         return vehicleList;
@@ -59,11 +57,9 @@ public class Inventory {
         this.gearList.add(gear);
     }
 
-//──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+//── Metoder ───────────────────────────────────────────────────────────────────────────────────────────────────────────
 
     private void initializeInventory() {
-
-        //Inventory inventory = new Inventory();
 
         Vehicle rv1 = new RecreationalVehicle(1500, true, "Vit", 5);
         Vehicle rv2 = new RecreationalVehicle(2000, true, "Svart", 6);
