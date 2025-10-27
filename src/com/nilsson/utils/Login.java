@@ -13,17 +13,21 @@ public class Login {
         Menu menu = new Menu();
         menu.clearScreen();
         PrintColor.cyan(menu.textBlocks());
-        PrintColor.green("\nVar vänlig skriv in ditt användarnamn: ");
+        PrintColor.green("────────────────────────────────────────────────────────────────────────────────────");
+        PrintColor.cyan("---Top-notch Secure Authenticated Log-in System™---");
+        PrintColor.green("────────────────────────────────────────────────────────────────────────────────────");
+        PrintColor.green("\nVar vänlig skriv in ditt användarnamn och [ENTER]: ");
 
         String userName = start.scanner.nextLine().trim();
 
         if ((userName == null) || (userName.isEmpty())) {
-            PrintColor.red("Du måste skriva in ditt användarnamn!");
+            PrintColor.red("Du måste skriva in ditt användarnamn! Tryck [ENTER] för att fortsätta:");
+            start.scanner.nextLine();
             return;
         }
 
         System.out.println("\n//Hemlig ledtråd till testare: Lösenord är '0000'");
-        PrintColor.green("Var vänlig skriv in ditt lösenord: ");
+        PrintColor.green("Var vänlig skriv in ditt lösenord och [ENTER]: ");
 
         String correctPassword = "0000";
         String userPass;

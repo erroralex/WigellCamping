@@ -90,14 +90,22 @@ public class Start {
                             scanner.nextLine();
                             break;
 
-                        case 5: // Lägg till medlemmar
+                        case 5: // Utlåningshistorik
+                            menu.clearScreen();
+                            PrintColor.cyan(menu.textBlocks());
+                            memberRegistry.printAllRentalHistories();
+                            System.out.println("Tryck [ENTER] för att fortsätta: ");
+                            scanner.nextLine();
+                            break;
+
+                        case 6: // Lägg till medlemmar
                             menu.clearScreen();
                             menu.textBlocks();
                             memberRegistry.createNewMember(memberRegistry, scanner);
                             scanner.nextLine();
                             break;
 
-                        case 6: // Visa medlemsskap
+                        case 7: // Visa medlemsskap
                             menu.clearScreen();
                             PrintColor.cyan(menu.textBlocks());
                             memberRegistry.printMembers();
@@ -106,13 +114,13 @@ public class Start {
                             scanner.nextLine();
                             break;
 
-                        case 7: // Redigera medlemmar
+                        case 8: // Redigera medlemmar
                             menu.clearScreen();
                             PrintColor.cyan(menu.textBlocks());
                             memberRegistry.editMember(scanner);
                             break;
 
-                        case 8: // Summera intäkter
+                        case 9: // Summera intäkter
                             double totalProfit = rentalService.calculateTotalProfit();
                             if (totalProfit > 0) {
                                 menu.clearScreen();
