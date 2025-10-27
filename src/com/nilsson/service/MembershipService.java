@@ -1,16 +1,31 @@
 package com.nilsson.service;
 
-import com.nilsson.pricing.PremiumPricing;
-import com.nilsson.pricing.StandardPricing;
-import com.nilsson.pricing.StudentPricing;
+import com.nilsson.policy.PremiumPricing;
+import com.nilsson.policy.StandardPricing;
+import com.nilsson.policy.StudentPricing;
 
 //── Klass & Attribut ──────────────────────────────────────────────────────────────────────────────────────────────────
 
 public class MembershipService {
 
-    private StandardPricing standardPricing = new StandardPricing(1);
-    private StudentPricing studentPricing = new StudentPricing(0.8);
-    private PremiumPricing premiumPricing = new PremiumPricing(1.2);
+    private StandardPricing standardPricing = new StandardPricing(1 * 1);
+    private StudentPricing studentPricing = new StudentPricing(1 * 0.8);
+    private PremiumPricing premiumPricing = new PremiumPricing(1 * 1.2);
+
+//── Getters & Setters ─────────────────────────────────────────────────────────────────────────────────────────────────
+
+    /*public StandardPricing getStandardPricing() {
+        return standardPricing.calculatePrice();
+    }
+
+    public StudentPricing getStudentPricing() {
+        return studentPricing;
+    }
+
+    public PremiumPricing getPremiumPricing() {
+        return premiumPricing;
+    }*/
+
 
 //── Metoder ───────────────────────────────────────────────────────────────────────────────────────────────────────────
 

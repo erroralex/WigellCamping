@@ -1,35 +1,30 @@
-package com.nilsson.pricing;
+package com.nilsson.policy;
 
 //── Klass & Attribut ──────────────────────────────────────────────────────────────────────────────────────────────────
 
-public class StandardPricing implements PricePolicy {
+public class PremiumPricing implements PricePolicy {
 
-    private double dailyRate;
+    private final StandardPricing standardPricing;
+    private final double PREMIUM_RATE = 1.2;
 
 //── Konstruktorer ─────────────────────────────────────────────────────────────────────────────────────────────────────
 
-public StandardPricing() {
-
-}
-
-public StandardPricing(double dailyRate) {
-    this.dailyRate = dailyRate;
-}
+    public PremiumPricing(double dailyRate) {
+        this.standardPricing = new StandardPricing(dailyRate);
+    }
 
 //── Getters & Setters ─────────────────────────────────────────────────────────────────────────────────────────────────
 
     @Override
     public double getMonthlyCost() {
-    return 30;
+        return standardPricing.getMonthlyCost() * PREMIUM_RATE;
     }
 
 //── Metoder ───────────────────────────────────────────────────────────────────────────────────────────────────────────
 
     @Override
     public double calculatePrice(int days) {
-        return days * dailyRate;
+        return standardPricing.calculatePrice(days) * PREMIUM_RATE;
     }
-
-//──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
 }

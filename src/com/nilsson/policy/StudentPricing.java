@@ -1,54 +1,32 @@
-package com.nilsson.entity;
+package com.nilsson.policy;
 
 //── Klass & Attribut ──────────────────────────────────────────────────────────────────────────────────────────────────
 
-public class RecreationalVehicle extends Vehicle {
+public class StudentPricing implements PricePolicy {
 
-    private int maxOccupants;
+    private final StandardPricing standardPricing;
+    private final double STUDENT_DISCOUNT = 0.8;
 
 //── Konstruktorer ─────────────────────────────────────────────────────────────────────────────────────────────────────
 
-    public RecreationalVehicle() {
-
-    }
-
-    public RecreationalVehicle(double dailyPrice, boolean hasEngine, String color, int maxOccupants) {
-        super(dailyPrice, hasEngine, color);
-        this.maxOccupants = maxOccupants;
+    public StudentPricing(double dailyRate) {
+        this.standardPricing = new StandardPricing(dailyRate);
     }
 
 //── Getters & Setters ─────────────────────────────────────────────────────────────────────────────────────────────────
 
-    public int getMaxOccupants() {
-        return maxOccupants;
-    }
-
-    public void setMaxOccupants(int maxOccupants) {
-        this.maxOccupants = maxOccupants;
+    @Override
+    public double getMonthlyCost() {
+        return standardPricing.getMonthlyCost() * STUDENT_DISCOUNT;
     }
 
 //── Metoder ───────────────────────────────────────────────────────────────────────────────────────────────────────────
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Fordon: ");
-
-        if (isHasEngine()) {
-            sb.append("Husbil, ");
-        } else {
-            sb.append("Husvagn, ");
-        }
-
-        sb.append(maxOccupants).append(" passagerare")
-                .append(", färg '").append(getColor()).append("'")
-                .append(", Grundpris: ").append(getDailyPrice())
-                .append(":- per dygn");
-
-        return sb.toString();
-    }
+@Override
+    public double calculatePrice(int days) {
+        return standardPricing.calculatePrice(days) * STUDENT_DISCOUNT;
+}
 
 //──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
 }
-

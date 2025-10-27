@@ -1,5 +1,8 @@
-package com.nilsson.entity;
+package com.nilsson.repository;
 
+import com.nilsson.model.Gear;
+import com.nilsson.model.RecreationalVehicle;
+import com.nilsson.model.Vehicle;
 import com.nilsson.utils.PrintColor;
 import java.util.ArrayList;
 import java.util.List;

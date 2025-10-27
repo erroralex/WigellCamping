@@ -33,8 +33,10 @@ public class Login {
 
             if (correctPassword.equals(userPass)) {
                 this.isLoggedIn = true;
-                System.out.println("Inloggning godkänd! Välkommen " + userName +
-                        "! \nTryck [ENTER] för att fortsätta: ");
+                PrintColor.green("────────────────────────────────────────────────────────────────────────────────────");
+                System.out.println("Inloggning godkänd! Välkommen " + userName + "!");
+                PrintColor.green("────────────────────────────────────────────────────────────────────────────────────");
+                System.out.print("Tryck [ENTER] för att fortsätta: ");
                 start.scanner.nextLine();
                 break;
 
