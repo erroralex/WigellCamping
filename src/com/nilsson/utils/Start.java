@@ -115,6 +115,8 @@ public class Start {
                         case 8: // Summera intäkter
                             double totalProfit = rentalService.calculateTotalProfit();
                             if (totalProfit > 0) {
+                                menu.clearScreen();
+                                PrintColor.cyan(menu.textBlocks());
                                 PrintColor.green("Beräknad intäkt av nu uthyrda föremål: " + totalProfit + ":-");
                                 System.out.println("Tryck [ENTER] för att fortsätta: ");
                             } else {

@@ -141,7 +141,6 @@ public class MemberRegistry {
         if (membersList.isEmpty()) {
             PrintColor.red("\nInga registrerade medlemmar!");
         }
-        //PrintColor.green("\nTryck [ENTER] för att fortsätta: ");
     }
 
 //──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────

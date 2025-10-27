@@ -12,21 +12,6 @@ public class MembershipService {
     private StudentPricing studentPricing = new StudentPricing(1 * 0.8);
     private PremiumPricing premiumPricing = new PremiumPricing(1 * 1.2);
 
-//── Getters & Setters ─────────────────────────────────────────────────────────────────────────────────────────────────
-
-    /*public StandardPricing getStandardPricing() {
-        return standardPricing.calculatePrice();
-    }
-
-    public StudentPricing getStudentPricing() {
-        return studentPricing;
-    }
-
-    public PremiumPricing getPremiumPricing() {
-        return premiumPricing;
-    }*/
-
-
 //── Metoder ───────────────────────────────────────────────────────────────────────────────────────────────────────────
 
     public double calculatePrice(int days, String strategyType) {

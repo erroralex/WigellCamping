@@ -27,4 +27,6 @@ public class PremiumPricing implements PricePolicy {
         return standardPricing.calculatePrice(days) * PREMIUM_RATE;
     }
 
+//──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
 }

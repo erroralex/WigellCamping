@@ -211,7 +211,7 @@ public class Rental {
             rentedItems.put(vehicle, rental);
 
             RentalService rentalService = new RentalService(rental);
-            double totalPrice = rentalService.calculatePrice(days);
+            double totalPrice = rentalService.calculatePrice(vehicle, days, member);
 
             PrintColor.green("\nDu har hyrt ut " + vehicle + " \ntill " + member + " i " + days + " dagar.");
             PrintColor.green("Total kostnad: " + totalPrice + ":-");
@@ -235,7 +235,7 @@ public class Rental {
             rentedItems.put(gear, rental);
 
             RentalService rentalService = new RentalService(rental);
-            double totalPrice = rentalService.calculatePrice(days);
+            double totalPrice = rentalService.calculatePrice(gear, days, member);
 
             PrintColor.green("\nDu har hyrt ut " + gear + " \ntill " + member + " i " + days + " dagar.");
             PrintColor.green("Total kostnad: " + totalPrice + ":-");
