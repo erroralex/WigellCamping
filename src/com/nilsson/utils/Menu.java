@@ -52,12 +52,13 @@ public class Menu {
         PrintColor.cyan("\t\t[2] - Hyra ut produkt");
         PrintColor.cyan("\t\t[3] - Visa uthyrda produkter");
         PrintColor.cyan("\t\t[4] - Returnera produkt(er)");
+        PrintColor.cyan("\t\t[5] - Utlåningshistorik");
         System.out.println("───────────────────────────────────────────────────────");
-        PrintColor.cyan("\t\t[5] - Skapa nytt medlemsskap");
-        PrintColor.cyan("\t\t[6] - Visa medlemmar");
-        PrintColor.cyan("\t\t[7] - Redigera medlemsskap");
+        PrintColor.cyan("\t\t[6] - Skapa nytt medlemsskap");
+        PrintColor.cyan("\t\t[7] - Visa medlemmar");
+        PrintColor.cyan("\t\t[8] - Redigera medlemsskap");
         System.out.println("───────────────────────────────────────────────────────");
-        PrintColor.green("\t\t[8] - Summera intäkter");
+        PrintColor.green("\t\t[9] - Summera intäkter");
         System.out.println("───────────────────────────────────────────────────────");
         PrintColor.red("\t\t[0] - Logga ut");
         System.out.println("───────────────────────────────────────────────────────");

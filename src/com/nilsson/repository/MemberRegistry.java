@@ -59,10 +59,10 @@ public class MemberRegistry {
 
     private void initializeMembers() {
 
-        Member member1 = new Member(getUniqueID(),"Johan", "Smith", "Premium", null);
-        Member member2 = new Member(getUniqueID(),"Karl", "Svensson", "Standard", null);
-        Member member3 = new Member(getUniqueID(),"Oskar", "Karlsson", "Standard", null);
-        Member member4 = new Member(getUniqueID(),"Johanna", "Alfredsson", "Student", null);
+        Member member1 = new Member(getUniqueID(),"Johan", "Smith", "Premium", new ArrayList<>());
+        Member member2 = new Member(getUniqueID(),"Karl", "Svensson", "Standard", new ArrayList<>());
+        Member member3 = new Member(getUniqueID(),"Oskar", "Karlsson", "Standard", new ArrayList<>());
+        Member member4 = new Member(getUniqueID(),"Johanna", "Alfredsson", "Student", new ArrayList<>());
 
         this.addMember(member1);
         this.addMember(member2);
@@ -74,7 +74,8 @@ public class MemberRegistry {
 
     public void editMember(Scanner scanner) {
         if (membersList.isEmpty()) {
-            PrintColor.red("\nDet finns inga medlemmar att redigera!");
+            PrintColor.red("\nDet finns inga medlemmar att redigera! Tryck [ENTER] för att fortsätta: ");
+            scanner.nextLine();
             return;
         }
 
@@ -94,36 +95,60 @@ public class MemberRegistry {
         }
 
         if (memberToEdit == null) {
-            PrintColor.red("\nIngen medlem hittades med det angivna medlems-nummret!");
+            PrintColor.red("\nIngen medlem hittades med det angivna medlems-nummret! Tryck [ENTER] för att fortsätta: ");
+            scanner.nextLine();
             return;
         }
 
         System.out.println("Redigera medlemsuppgifter för: " +
                 memberToEdit.getFirstName() + " " + memberToEdit.getLastName());
 
-        PrintColor.green("\nFörnamn [nuvarande: " + memberToEdit.getFirstName() + "]: ");
-        String newFirstName = scanner.nextLine();
+        String newFirstName;
 
-        if (!newFirstName.isEmpty()) {
-            memberToEdit.setFirstName(newFirstName);
+        while (true) {
+            PrintColor.green("\nFörnamn [nuvarande: " + memberToEdit.getFirstName() + "]: ");
+            newFirstName = scanner.nextLine();
+            if (newFirstName.isEmpty()) {
+                PrintColor.red("Förnamn får inte vara tomt! Försök igen.");
+            } else {
+                memberToEdit.setFirstName(newFirstName);
+                break;
+            }
         }
 
-        PrintColor.green("Efternamn [nuvarande: " + memberToEdit.getLastName() + "]: ");
-        String newLastName = scanner.nextLine();
-        if (!newLastName.isEmpty()) {
-            memberToEdit.setLastName(newLastName);
+        String newLastName;
+
+        while (true) {
+            PrintColor.green("Efternamn [nuvarande: " + memberToEdit.getLastName() + "]: ");
+            newLastName = scanner.nextLine();
+            if (newLastName.isEmpty()) {
+                PrintColor.red("Efternamn får inte vara tomt! Försök igen.");
+            } else {
+                memberToEdit.setLastName(newLastName);
+                break;
+            }
         }
 
-        PrintColor.green("\nMedlemsnivå [nuvarande: " + memberToEdit.getMembershipLevel() + "]: ");
-        PrintColor.green("────────────────────────────────────────────────────────────────────────────────────");
-        memberLevelInfo();
-        PrintColor.green("────────────────────────────────────────────────────────────────────────────────────");
-        PrintColor.green("Skriv in [medlemsnivå] och [ENTER]:");
-        String newMembershipLevel = scanner.nextLine();
-        if (!newMembershipLevel.isEmpty()) {
-            memberToEdit.setMembershipLevel(newMembershipLevel);
-        }
+        String newMembershipLevel;
 
+        while (true) {
+            PrintColor.green("\nMedlemsnivå [nuvarande: " + memberToEdit.getMembershipLevel() + "]: ");
+            PrintColor.green("────────────────────────────────────────────────────────────────────────────────────");
+            memberLevelInfo();
+            PrintColor.green("────────────────────────────────────────────────────────────────────────────────────");
+            PrintColor.green("Skriv in [medlemsnivå] och [ENTER]:");
+            newMembershipLevel = scanner.nextLine();
+
+            if (newMembershipLevel.equalsIgnoreCase("Student") ||
+                newMembershipLevel.equalsIgnoreCase("Standard") ||
+                newMembershipLevel.equalsIgnoreCase("Premium")) {
+                memberToEdit.setMembershipLevel(newMembershipLevel);
+                break;
+
+            } else {
+                PrintColor.red("Ogiltlig medlemsnivå! Ange Student, Standard eller Premium.");
+            }
+        }
         PrintColor.green("Medlemensuppgifter uppdaterade! Tryck [ENTER] för att fortsätta: ");
         scanner.nextLine();
     }
@@ -152,22 +177,50 @@ public class MemberRegistry {
 
         System.out.println("\nFyll i information för nytt medlemsskap:");
 
-        PrintColor.green("Förnamn: ");
-        //scanner.nextLine();
-        String firstName = scanner.nextLine();
+        String firstName;
 
-        PrintColor.green("Efternamn: ");
-        String lastName = scanner.nextLine();
+        while (true) {
+            PrintColor.green("Förnamn: ");
+            firstName = scanner.nextLine();
 
+            if (!firstName.isEmpty()) {
+                break;
+            }
+        PrintColor.red("Du måste ange ett förnamn!");
+        }
+
+        String lastName;
+
+        while (true) {
+            PrintColor.green("Efternamn: ");
+            lastName = scanner.nextLine();
+            if (!lastName.isEmpty()) {
+                break;
+            }
+            PrintColor.red("Du måste ange ett efternamn!");
+        }
+
+        String membershipLevel;
+
+        while (true) {
         PrintColor.green("\nMedlemsnivå:");
         memberLevelInfo();
         PrintColor.green("Skriv in [medlemsnivå] och [ENTER]:");
-        String membershipLevel = scanner.nextLine();
+        membershipLevel = scanner.nextLine();
+        if (membershipLevel.equalsIgnoreCase("Student") ||
+            membershipLevel.equalsIgnoreCase("Standard") ||
+            membershipLevel.equalsIgnoreCase("Premium")) {
+            break;
+
+            } else {
+                PrintColor.red("Ogiltlig medlemsnivå! Ange Student, Standard eller Premium");
+            }
+        }
         PrintColor.green("────────────────────────────────────────────────────────────────────────────────────");
-        Member newMember = new Member(memberRegistry.getUniqueID(), firstName, lastName, membershipLevel, null);
+        Member newMember = new Member(memberRegistry.getUniqueID(), firstName, lastName, membershipLevel, new ArrayList<>());
         memberRegistry.addMember(newMember);
 
-        System.out.println("Nytt medlemsskap skapat!");
+        System.out.print("Nytt medlemsskap skapat! Tryck [ENTER]: ");
     }
 
 //──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
@@ -193,6 +246,32 @@ public class MemberRegistry {
             }
         }
         return null;
+    }
+
+//──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+    public void printAllRentalHistories() {
+        if (membersList.isEmpty()) {
+            PrintColor.red("Ingen medlem finns registrerad. Tryck [ENTER] för att fortsätta: ");
+            return;
+        }
+
+        PrintColor.green("Utlånings- & återlämningshistorik för alla medlemmar:");
+        PrintColor.green("────────────────────────────────────────────────────────────────────────────────────");
+
+        for (Member member : membersList) {
+            System.out.println("Medlem: " + member.getFirstName() + " " + member.getLastName() + " (ID: " + member.getId() + ")");
+
+            List<String> history = member.getHistory();
+            if (history == null || history.isEmpty()) {
+                System.out.println("  Ingen historik.");
+            } else {
+                for (String entry : history) {
+                    System.out.println("  - " + entry);
+                }
+            }
+            PrintColor.green("────────────────────────────────────────────────────────────────────────────────────");
+        }
     }
 
 //──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
