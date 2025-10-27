@@ -54,8 +54,8 @@ public class Menu {
         PrintColor.cyan("\t\t[4] - Returnera produkt(er)");
         System.out.println("───────────────────────────────────────────────────────");
         PrintColor.cyan("\t\t[5] - Skapa nytt medlemsskap");
-        PrintColor.cyan("\t\t[6] - Visa medlemsskap");
-        PrintColor.cyan("\t\t[7] - Ändra medlemsskap");
+        PrintColor.cyan("\t\t[6] - Visa medlemmar");
+        PrintColor.cyan("\t\t[7] - Redigera medlemsskap");
         System.out.println("───────────────────────────────────────────────────────");
         PrintColor.green("\t\t[8] - Summera intäkter");
         System.out.println("───────────────────────────────────────────────────────");

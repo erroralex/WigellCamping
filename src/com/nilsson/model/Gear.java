@@ -1,4 +1,4 @@
-package com.nilsson.entity;
+package com.nilsson.model;
 
 //── Klass & Attribut ──────────────────────────────────────────────────────────────────────────────────────────────────
 

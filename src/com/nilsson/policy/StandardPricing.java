@@ -1,40 +1,33 @@
-package com.nilsson.entity;
+package com.nilsson.policy;
 
 //── Klass & Attribut ──────────────────────────────────────────────────────────────────────────────────────────────────
 
-public class Vehicle extends Item {
+public class StandardPricing implements PricePolicy {
 
-    private boolean hasEngine;
-    private String color;
+    private double dailyRate;
 
 //── Konstruktorer ─────────────────────────────────────────────────────────────────────────────────────────────────────
 
-    public Vehicle() {
+public StandardPricing() {
 
-    }
+}
 
-    public Vehicle(double dailyPrice, boolean hasEngine, String color) {
-        super(dailyPrice);
-        this.hasEngine = hasEngine;
-        this.color = color;
-    }
+public StandardPricing(double dailyRate) {
+    this.dailyRate = dailyRate;
+}
 
 //── Getters & Setters ─────────────────────────────────────────────────────────────────────────────────────────────────
 
-    public boolean isHasEngine() {
-        return hasEngine;
+    @Override
+    public double getMonthlyCost() {
+    return 30;
     }
 
-    public void setHasEngine(boolean hasEngine) {
-        this.hasEngine = hasEngine;
-    }
+//── Metoder ───────────────────────────────────────────────────────────────────────────────────────────────────────────
 
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
+    @Override
+    public double calculatePrice(int days) {
+        return days * dailyRate;
     }
 
 //──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────

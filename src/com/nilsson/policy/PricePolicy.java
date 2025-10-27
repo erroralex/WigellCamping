@@ -1,4 +1,4 @@
-package com.nilsson.pricing;
+package com.nilsson.policy;
 
 //── Klass & Attribut ──────────────────────────────────────────────────────────────────────────────────────────────────
 

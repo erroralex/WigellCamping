@@ -1,5 +1,6 @@
-package com.nilsson.entity;
+package com.nilsson.repository;
 
+import com.nilsson.model.Member;
 import com.nilsson.utils.Menu;
 import com.nilsson.utils.PrintColor;
 import java.util.*;
@@ -77,8 +78,9 @@ public class MemberRegistry {
             return;
         }
 
-        PrintColor.green("Välj medlem att redigera:");
+        PrintColor.green("\nVälj medlem att redigera:");
         printMembers();
+        PrintColor.green("────────────────────────────────────────────────────────────────────────────────────");
         PrintColor.green("Ange medlems-ID: ");
         int memberId = scanner.nextInt();
         scanner.nextLine();
@@ -122,14 +124,15 @@ public class MemberRegistry {
             memberToEdit.setMembershipLevel(newMembershipLevel);
         }
 
-        PrintColor.green("Medlemensuppgifter uppdaterade!");
+        PrintColor.green("Medlemensuppgifter uppdaterade! Tryck [ENTER] för att fortsätta: ");
         scanner.nextLine();
     }
 
 //──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
     public void printMembers() {
-        System.out.println("Registrerade medlemmar:");
+        PrintColor.green("Registrerade medlemmar:");
+        System.out.println();
         int i = 1;
         for (Member member : membersList) {
             System.out.println(i + ": " + member.toString());

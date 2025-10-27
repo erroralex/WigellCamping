@@ -1,30 +1,42 @@
-package com.nilsson.pricing;
+package com.nilsson.model;
 
 //── Klass & Attribut ──────────────────────────────────────────────────────────────────────────────────────────────────
 
-public class PremiumPricing implements PricePolicy {
+public class Vehicle extends Item {
 
-    private final StandardPricing standardPricing;
-    private final double PREMIUM_RATE = 1.2;
+    private boolean hasEngine;
+    private String color;
 
 //── Konstruktorer ─────────────────────────────────────────────────────────────────────────────────────────────────────
 
-    public PremiumPricing(double dailyRate) {
-        this.standardPricing = new StandardPricing(dailyRate);
+    public Vehicle() {
+
+    }
+
+    public Vehicle(double dailyPrice, boolean hasEngine, String color) {
+        super(dailyPrice);
+        this.hasEngine = hasEngine;
+        this.color = color;
     }
 
 //── Getters & Setters ─────────────────────────────────────────────────────────────────────────────────────────────────
 
-    @Override
-    public double getMonthlyCost() {
-        return standardPricing.getMonthlyCost() * PREMIUM_RATE;
+    public boolean isHasEngine() {
+        return hasEngine;
     }
 
-//── Metoder ───────────────────────────────────────────────────────────────────────────────────────────────────────────
-
-    @Override
-    public double calculatePrice(int days) {
-        return standardPricing.calculatePrice(days) * PREMIUM_RATE;
+    public void setHasEngine(boolean hasEngine) {
+        this.hasEngine = hasEngine;
     }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+//──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
 }

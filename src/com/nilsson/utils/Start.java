@@ -1,8 +1,8 @@
 package com.nilsson.utils;
 
-import com.nilsson.entity.Inventory;
-import com.nilsson.entity.MemberRegistry;
-import com.nilsson.entity.Rental;
+import com.nilsson.repository.Inventory;
+import com.nilsson.repository.MemberRegistry;
+import com.nilsson.model.Rental;
 import com.nilsson.service.RentalService;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -68,7 +68,8 @@ public class Start {
                             menu.clearScreen();
                             PrintColor.cyan(menu.textBlocks());
                             inventory.printInventory();
-                            PrintColor.green("\nTryck [ENTER] för att fortsätta: ");
+                            PrintColor.green("────────────────────────────────────────────────────────────────────────────────────");
+                            System.out.println("Tryck [ENTER] för att fortsätta: ");
                             scanner.nextLine();
                             break;
 
@@ -97,20 +98,27 @@ public class Start {
                             break;
 
                         case 6: // Visa medlemsskap
+                            menu.clearScreen();
+                            PrintColor.cyan(menu.textBlocks());
                             memberRegistry.printMembers();
+                            PrintColor.green("────────────────────────────────────────────────────────────────────────────────────");
+                            System.out.println("Tryck [ENTER] för att fortsätta: ");
                             scanner.nextLine();
                             break;
 
                         case 7: // Redigera medlemmar
+                            menu.clearScreen();
+                            PrintColor.cyan(menu.textBlocks());
                             memberRegistry.editMember(scanner);
                             break;
 
                         case 8: // Summera intäkter
                             double totalProfit = rentalService.calculateTotalProfit();
                             if (totalProfit > 0) {
-                                PrintColor.green("Beräknad intäkt av uthyrda föremål: " + totalProfit + ":-");
+                                PrintColor.green("Beräknad intäkt av nu uthyrda föremål: " + totalProfit + ":-");
+                                System.out.println("Tryck [ENTER] för att fortsätta: ");
                             } else {
-                                PrintColor.red("Hittade inga uthyrda föremål.");
+                                PrintColor.red("Hittade inga uthyrda föremål. Tryck [ENTER] för att fortsätta: ");
                             }
                             scanner.nextLine();
                             break;

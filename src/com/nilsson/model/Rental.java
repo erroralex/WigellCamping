@@ -1,6 +1,9 @@
-package com.nilsson.entity;
+package com.nilsson.model;
 
+import com.nilsson.repository.Inventory;
+import com.nilsson.repository.MemberRegistry;
 import com.nilsson.service.MembershipService;
+import com.nilsson.service.RentalService;
 import com.nilsson.utils.Menu;
 import com.nilsson.utils.PrintColor;
 import com.nilsson.utils.Start;
@@ -58,7 +61,7 @@ public class Rental {
 
     public void rentLogic() {
 
-        PrintColor.green("\nVill du hyra ut ett fordon eller utrustning? Slå [siffra] och [ENTER]");
+        PrintColor.green("\nVill du hyra ut ett fordon eller utrustning? Skriv in [siffra] och [ENTER]");
         PrintColor.cyan("[1]: Fordon \n[2]: Utrustning");
         PrintColor.red("[0]: Avbryt");
         int choice = start.scanner.nextInt();
@@ -88,7 +91,8 @@ public class Rental {
     public void rentVehicleSystem() {
 
         inv.printVehicles();
-        PrintColor.green("Vilket fordon vill du hyra ut? Tryck [siffra] och [ENTER]: ");
+        PrintColor.green("\n────────────────────────────────────────────────────────────────────────────────────");
+        PrintColor.green("\nVilket fordon vill du hyra ut? Skriv in [siffra] och [ENTER]: ");
         int index = start.scanner.nextInt() - 1;
         start.scanner.nextLine();
 
@@ -120,7 +124,7 @@ public class Rental {
                     if (memberIndex >= 0 && index < memberRegistry.getMembers().size()) {
                         PrintColor.green("────────────────────────────────────────────────────────────────────────────────────");
                         rentVehicle(inv.getVehicleList().get(index), memberRegistry.getMembers().get(memberIndex));
-                        PrintColor.green("────────────────────────────────────────────────────────────────────────────────────");
+                        //PrintColor.green("────────────────────────────────────────────────────────────────────────────────────");
                         start.scanner.nextLine();
                     }else {
                         PrintColor.red("Ogiltligt val.");
@@ -144,6 +148,7 @@ public class Rental {
     public void rentGearSystem() {
 
         inv.printGear();
+        PrintColor.green("\n────────────────────────────────────────────────────────────────────────────────────");
         PrintColor.green("Vilken utrustning vill du hyra ut? Tryck [siffra] och [ENTER]: ");
         int index = start.scanner.nextInt() - 1;
         start.scanner.nextLine();
@@ -175,7 +180,7 @@ public class Rental {
                     if (memberIndex >= 0 && index < memberRegistry.getMembers().size()) {
                         PrintColor.green("────────────────────────────────────────────────────────────────────────────────────");
                         rentGear(inv.getGearList().get(index), memberRegistry.getMembers().get(memberIndex));
-                        PrintColor.green("────────────────────────────────────────────────────────────────────────────────────");
+                        //PrintColor.green("────────────────────────────────────────────────────────────────────────────────────");
                         start.scanner.nextLine();
                     }else {
                         PrintColor.red("Ogiltligt val.");
@@ -204,10 +209,14 @@ public class Rental {
 
             Rental rental = new Rental(member, days);
             rentedItems.put(vehicle, rental);
-            double totalPrice = membershipService.calculatePrice(days,member.getMembershipLevel());
+
+            RentalService rentalService = new RentalService(rental);
+            double totalPrice = rentalService.calculatePrice(days);
 
             PrintColor.green("\nDu har hyrt ut " + vehicle + " \ntill " + member + " i " + days + " dagar.");
             PrintColor.green("Total kostnad: " + totalPrice + ":-");
+            PrintColor.green("────────────────────────────────────────────────────────────────────────────────────");
+            System.out.println("Tryck [ENTER] för att fortsätta: ");
             start.scanner.nextLine();
         } else {
             PrintColor.red("Ogiltligt val.");
@@ -224,10 +233,14 @@ public class Rental {
 
             Rental rental = new Rental(member, days);
             rentedItems.put(gear, rental);
-            double totalPrice = membershipService.calculatePrice(days, member.getMembershipLevel());
+
+            RentalService rentalService = new RentalService(rental);
+            double totalPrice = rentalService.calculatePrice(days);
 
             PrintColor.green("\nDu har hyrt ut " + gear + " \ntill " + member + " i " + days + " dagar.");
             PrintColor.green("Total kostnad: " + totalPrice + ":-");
+            PrintColor.green("────────────────────────────────────────────────────────────────────────────────────");
+            System.out.println("Tryck [ENTER] för att fortsätta: ");
             start.scanner.nextLine();
         } else {
             PrintColor.red("Ogiltligt val.");
@@ -238,7 +251,7 @@ public class Rental {
 
     public void showRented() {
         if (rentedItems.isEmpty()) {
-            PrintColor.red("Ingen uthyrd utrustning att visa.");
+            PrintColor.red("Ingen uthyrd utrustning att visa. Tryck [ENTER] för att fortsätta: ");
         } else {
             int i = 1;
             PrintColor.green("────────────────────────────────────────────────────────────────────────────────────");
@@ -247,11 +260,12 @@ public class Rental {
                 Item item = entry.getKey();
                 Member member = entry.getValue().getMember();
                 int days = entry.getValue().getDays();
-                System.out.println("\n[" + i + "]: " + item + " \nhyrt av: " + member + ", i " + days + " dagar.");
                 System.out.println("-------------------------------------------------------------------------------");
+                System.out.println("[" + i + "]: " + item + " \nhyrt av: " + member + ", i " + days + " dagar.");
                 i++;
             }
             PrintColor.green("────────────────────────────────────────────────────────────────────────────────────");
+            System.out.println("Tryck [ENTER] för att fortsätta: ");
         }
     }
 
@@ -259,7 +273,7 @@ public class Rental {
 
     public void returnItem() {
         if (rentedItems.isEmpty()) {
-            PrintColor.red("Det finns inga utlånade föremål att lämna tillbaka.");
+            PrintColor.red("Det finns inga utlånade föremål att lämna tillbaka. Tryck [ENTER] för att fortsätta: ");
             return;
         }
 
@@ -281,8 +295,9 @@ public class Rental {
                 inv.getGearList().add((Gear) itemToReturn);
             }
             PrintColor.green("Du har återlämnat " + itemToReturn + " till lagret.");
+            System.out.println("Tryck [ENTER] för att fortsätta: ");
         } else {
-            PrintColor.red("Ogiltligt val. Var vänlig och ange ett giltligt föremål från listan");
+            PrintColor.red("Ogiltligt val. Var vänlig och ange ett giltligt föremål från listan. Tryck [ENTER] för att fortsätta: ");
         }
     }
 
