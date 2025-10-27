@@ -31,7 +31,7 @@ public class Inventory {
         return SingletonHolder.INSTANCE;
     }
 
-    // Static inner class for singleton pattern
+    // Static inner class för singleton pattern
     private static class SingletonHolder {
         private static final Inventory INSTANCE = new Inventory();
     }

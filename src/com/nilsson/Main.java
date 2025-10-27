@@ -20,9 +20,9 @@ public class Main {
 }
 /**
  * ATT GÖRA:
- * Koppla samman pris och uthyrning
- * Historik?
- * Summera intäkter
  * Felhantering
+ * Historik?
  * UI fix för consistency
+ *** Summera intäkter - KLAR
+ *** Koppla samman pris och uthyrning (calculatePrice()) - KLAR
  */
