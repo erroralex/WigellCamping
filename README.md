@@ -6,95 +6,64 @@
 █  ████  ██        ███      ███        ██        ██        █████████      ███  ████  ██  ████  ██  ████████        ██  ███   ███      ██
 ```
 
-Inlämningsuppgift objektorienterad programmering:
+# Wigell Camping Medlemsklubb och Uthyrningssystem
 
-Bakgrund:
-Du har fått en provanställning på Wigellkoncernen och som första uppdrag ska du bygga
-en konsolbaserad Java-applikation som modellerar en medlemsklubb med uthyrning av
-utrustning. (t.ex. fordon, verktyg, sportprylar eller liknande)
-Tekniska krav
+## Om Projektet
 
-Klasser som ska finnas i applikationen:
-• Member (id, namn, status/level, historik)
-• Item (abstract)  Subklasser som ex. Vehicle, Tool, SportGear eller liknandeberoende på ditt val av applikation. 
-Var och en av klasserna ska innehålla sina unika attribut och metoder enligt det vi pratat om.
-• Rental (kopplar member och item för en viss tidsperiod)
-• PricePolicy (interface) + konkreta strategier, ex. standard, student, premium.
-• Inventory och MemberRegistry (hanteras i minnet via List, Map eller Set)
-• RentalService och MembershipService ska innehålla affärslogiken
-• Konsolmeny: lägg till/sök/ändra medlemmar. Lista/filtrera items. Boka/avsluta uthyrning. Summera intäkter
+Wigell Camping är en konsolbaserad Java-applikation som modellerar en medlemsklubb för uthyrning av utrustning som fordon och campingutrustning. Applikationen är designad för att hantera medlemmar och uthyrningsobjekt på ett strukturerat och användarvänligt sätt.
 
+## Teknisk Översikt
 
-Bedömningskriterier
+Applikationen är uppbyggd kring följande kärnklasser:
 
-G
-Körbar applikation som körs tills användaren väljer att avsluta
-Korrekt uppförda klasser samt användande av objekt och metoder
-Item som basklass + minst två konkreta subklasser. PricePolicy som interface + minst
-två implementationer
-Privata attribut samt nödvändiga getters/setters. Enkel ansvarsdelning mellan
-klasser/logik samt huvudprogrammet
-Collections ska användas där det är lämpligt
-Mindre kompletteringar får förekomma
+- **Member:** Representerar en medlem med unikt ID, namn, medlemsnivå (Student, Standard, Premium) och uthyrningshistorik.
+- **Item (abstrakt klass):** Basklass för uthyrningsobjekt med underklasser som `Vehicle` (fordon) och `Gear` (utrustning).
+- **Rental:** Kopplar en member till ett item under en specifik uthyrningsperiod.
+- **PricePolicy (interface):** Definierar prisberäkningar med konkreta strategier som standard-, student- och premium-priser som reflekterar rabattstrukturer.
+- **Inventory:** Hanterar tillgängliga fordon och utrustning i programminnet via listor.
+- **MemberRegistry:** Ger samlad hantering av medlemslistan, med metoder för skapande, redigering, borttagning och sökning.
+- **RentalService och MembershipService:** Innehåller affärslogik för uthyrningsprocesser, prisberäkningar och medlemsnivåhantering.
+- **Konsolmeny:** Komplett menystruktur som inkluderar att lägga till, ändra, söka och ta bort medlemmar, visa, sortera och hantera inventory, utföra uthyrning och återlämning, samt summera intäkter.
 
-VG
-Samtliga krav på G är uppfyllda. Dessutom finns en robust felhantering på metoder där
-så är lämpligt. Det finns även en hög kodkvalitet med väl namngivna klasser och
-metoder. Uppgiften ska lämnas in innan deadline. Mindre kompletteringar får
-förekomma
+## Uppfyllande av Inlämningsuppgiften
 
+Applikationen bör uppfylla samtliga tekniska krav och bedömningskriterier i uppgiften:
 
-Planerade uppgifter:
+- Körbar och användarinteraktiv konsolprogramvara som körs tills användaren väljer avsluta.
+- Omfattande objektorienterad design med korrekt kapsling (`private` attribut och tillhörande `getters`/`setters`).
+- Abstrakt basklass `Item` med minst två konkreta underklasser `Vehicle` och `Gear`.
+- Implementerat `PricePolicy` interface med minst tre strategier (`StandardPricing`, `StudentPricing`, `PremiumPricing`).
+- Effektiv användning av Java Collections (Listor, Maps) för att hantera medlemsregister och inventory.
+- Robust felhantering för inmatningsfel och logiska fel i menyval och operationer.
+- Tydliga och användarvänliga menygränssnitt med färgkodade utskrifter.
+- Funktionalitet för att lägga till, redigera och ta bort medlemmar, inklusive validerat medlemsnivåval.
+- Funktionalitet för hantering av fordon och utrustning med möjlighet att lägga till och ta bort inventory-objekt.
+- Uthyrning och återlämning kopplade till specifika medlemmar med historikloggning.
+- Prisberäkning baserad på medlemsnivå och uthyrningsperiod.
+- Summering av intäkter från uthyrning presenterad i användargränssnittet.
 
-~~□ Skapa Member-klass~~
+## Installation och Körning
 
-~~□ Skapa Item abstrakt basklass~~
+Programmet kräver Java 8 eller senare. För att köra applikationen:
 
-~~□ Skapa minst två konkreta subklasser av Item~~
+1. Klona repot.
+2. Kompilera koden med `javac`.
+3. Starta programmet via `java Main` i terminalen.
+4. Följ instruktionerna i den interaktiva konsolmenyn.
 
-~~□ Skapa Rental-klass~~
+## Användning
 
-~~□ Skapa PricePolicy interface~~
+Navigera i menyn för att:
 
-~~□ Implementera minst två prisstrategier~~
+- Logga in (enkel autentisering för demonstrativa ändamål).
+- Hantera medlemmar (lägg till, redigera, ta bort).
+- Visa och hantera inventory för fordon och utrustning.
+- Utföra uthyrningar och återlämningar.
+- Visa uthyrningshistorik.
+- Summera och visa intäkter.
 
-~~□ Skapa Inventory-klass~~
+## Sammanfattning
 
-~~□ Skapa MemberRegistry-klass~~
+Detta projekt speglar förhoppningsvis en fullständig och väldesignad lösning som är anpassad för kursuppgiften i objektorienterad programmering. Det bör demonstrera god användning av designprinciper, felhantering, användarvänlighet och bör uppfylla alla tekniska och kvalitetskrav för Godkänd (G) och Väl Godkänd (VG) betygsnivåer enligt uppgiftens specifikationer.
 
-~~□ Skapa RentalService~~
-
-~~□ Skapa MembershipService~~
-
-□ Implementera konsolmeny - lägg till/sök/ändra medlemmar
-
-□ Implementera konsolmeny - lista/filtrera items
-
-~~□ Implementera konsolmeny - boka uthyrning~~
-
-~~□ Implementera konsolmeny - avsluta uthyrning~~
-
-□ Implementera konsolmeny - summera intäkter
-
-~~□ Använd privata attribut med getters/setters~~
-
-□ Säkerställ ansvarsdelning mellan klasser och huvudprogram
-
-~~□ Använd Collections där lämpligt~~
-
-□ Säkerställ att applikationen körs tills användaren avslutar
-
-□ Testa att allt fungerar korrekt
-
-□ Mindre kompletteringar får förekomma
-
-
-□ -----Extra för VG-----
-
-□ Implementera robust felhantering
-
-□ Säkerställ hög kodkvalitet med välnamngivna klasser och metoder
-
-□ Lämna in innan deadline
-
-□ Mindre kompletteringar får förekomma
+***
