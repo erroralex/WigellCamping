@@ -8,7 +8,7 @@ import com.nilsson.policy.StudentPricing;
 
 public class MembershipService {
 
-    private StandardPricing standardPricing = new StandardPricing(1 * 1);
+    private StandardPricing standardPricing = new StandardPricing(1);
     private StudentPricing studentPricing = new StudentPricing(1 * 0.8);
     private PremiumPricing premiumPricing = new PremiumPricing(1 * 1.2);
 
