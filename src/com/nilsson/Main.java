@@ -18,11 +18,3 @@ public class Main {
 //──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
 }
-/**
- * ATT GÖRA:
- * Felhantering
- * Historik?
- * UI fix för consistency
- *** Summera intäkter - KLAR
- *** Koppla samman pris och uthyrning (calculatePrice()) - KLAR
- */

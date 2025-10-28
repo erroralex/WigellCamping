@@ -48,7 +48,7 @@ public class Menu {
         PrintColor.cyan(textBlocks());
         System.out.println("\nVälkommen till Wigell Camping! Vad vill du göra idag?");
         System.out.println("───────────────────────────────────────────────────────");
-        PrintColor.cyan("\t\t[1] - Lista alla tillgängliga produkter");
+        PrintColor.cyan("\t\t[1] - Produkter");
         PrintColor.cyan("\t\t[2] - Hyra ut produkt");
         PrintColor.cyan("\t\t[3] - Visa uthyrda produkter");
         PrintColor.cyan("\t\t[4] - Returnera produkt(er)");

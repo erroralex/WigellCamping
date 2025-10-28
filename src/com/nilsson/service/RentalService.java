@@ -2,7 +2,6 @@ package com.nilsson.service;
 
 import com.nilsson.model.*;
 import com.nilsson.policy.PricePolicy;
-import com.nilsson.repository.MemberRegistry;
 import java.util.Map;
 
 //── Klass & Attribut ──────────────────────────────────────────────────────────────────────────────────────────────────
@@ -11,9 +10,6 @@ public class RentalService implements PricePolicy {
 
     private Rental rental;
     private Map<Item, Rental> rentedItems;
-
-    //MemberRegistry memberRegistry = MemberRegistry.getInstance();
-    //MembershipService membershipService = new MembershipService();
 
 //── Konstruktorer ─────────────────────────────────────────────────────────────────────────────────────────────────────
 
@@ -28,7 +24,6 @@ public class RentalService implements PricePolicy {
        return 0;
     }
 
-
     public double calculatePrice(Item item, int days, Member member) {
         if (item == null || item.getDailyPrice() <= 0) {
             System.out.println("Varning: Inget föremål eller felaktigt pris: " + item);
@@ -36,7 +31,6 @@ public class RentalService implements PricePolicy {
         }
         return item.calculateProfitPerRental(days, member);
     }
-
 
 //──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 

@@ -69,8 +69,6 @@ public class Start {
                             PrintColor.cyan(menu.textBlocks());
                             inventory.printInventory();
                             PrintColor.green("────────────────────────────────────────────────────────────────────────────────────");
-                            System.out.println("Tryck [ENTER] för att fortsätta: ");
-                            scanner.nextLine();
                             break;
 
                         case 2: // Hyra ut
@@ -108,10 +106,8 @@ public class Start {
                         case 7: // Visa medlemsskap
                             menu.clearScreen();
                             PrintColor.cyan(menu.textBlocks());
-                            memberRegistry.printMembers();
+                            memberRegistry.printAndSortMembers();
                             PrintColor.green("────────────────────────────────────────────────────────────────────────────────────");
-                            System.out.println("Tryck [ENTER] för att fortsätta: ");
-                            scanner.nextLine();
                             break;
 
                         case 8: // Redigera medlemmar

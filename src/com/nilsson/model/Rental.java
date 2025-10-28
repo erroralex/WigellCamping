@@ -2,12 +2,10 @@ package com.nilsson.model;
 
 import com.nilsson.repository.Inventory;
 import com.nilsson.repository.MemberRegistry;
-import com.nilsson.service.MembershipService;
 import com.nilsson.service.RentalService;
 import com.nilsson.utils.Menu;
 import com.nilsson.utils.PrintColor;
 import com.nilsson.utils.Start;
-
 import java.time.LocalDate;
 import java.util.*;
 
@@ -24,7 +22,6 @@ public class Rental {
     Start start = new Start();
     Inventory inv = Inventory.getInstance();
     MemberRegistry memberRegistry = MemberRegistry.getInstance();
-    MembershipService membershipService = new MembershipService();
 
 //── Konstruktorer ─────────────────────────────────────────────────────────────────────────────────────────────────────
 
@@ -111,7 +108,7 @@ public class Rental {
 
             switch (menu.menuChoice) {
 
-                case 1:
+                case 1: // Ny medlem
                     memberRegistry.createNewMember(memberRegistry, start.scanner);
                     int lastIndex = memberRegistry.getMembers().size() - 1;
                     PrintColor.green("────────────────────────────────────────────────────────────────────────────────────");
@@ -120,7 +117,7 @@ public class Rental {
                     start.scanner.nextLine();
                     break;
 
-                case 2:
+                case 2: // Befintlig medlem
                     memberRegistry.printMembers();
                     int memberIndex = start.scanner.nextInt() - 1;
                     start.scanner.nextLine();
@@ -169,7 +166,7 @@ public class Rental {
 
             switch (menu.menuChoice) {
 
-                case 1:
+                case 1: // Ny medlem
                     memberRegistry.createNewMember(memberRegistry, start.scanner);
                     int lastIndex = memberRegistry.getMembers().size() - 1;
                     PrintColor.green("────────────────────────────────────────────────────────────────────────────────────");
@@ -178,7 +175,7 @@ public class Rental {
                     start.scanner.nextLine();
                     break;
 
-                case 2:
+                case 2: // Befintlig medlem
                     memberRegistry.printMembers();
                     int memberIndex = start.scanner.nextInt() - 1;
                     start.scanner.nextLine();
