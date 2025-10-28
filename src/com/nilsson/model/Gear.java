@@ -8,6 +8,10 @@ public class Gear extends Item {
 
 //── Konstruktorer ─────────────────────────────────────────────────────────────────────────────────────────────────────
 
+    public Gear() {
+
+    }
+
     public Gear(double dailyPrice, int maxOccupants) {
         super(dailyPrice);
         this.maxOccupants = maxOccupants;
