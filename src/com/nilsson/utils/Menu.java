@@ -5,7 +5,6 @@ package com.nilsson.utils;
 public class Menu {
 
     public int menuChoice;
-    private boolean isRunning = true;
 
 //── Metoder ───────────────────────────────────────────────────────────────────────────────────────────────────────────
 

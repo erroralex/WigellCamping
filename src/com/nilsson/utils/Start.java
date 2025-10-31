@@ -3,6 +3,7 @@ package com.nilsson.utils;
 import com.nilsson.repository.Inventory;
 import com.nilsson.repository.MemberRegistry;
 import com.nilsson.model.Rental;
+import com.nilsson.service.MembershipService;
 import com.nilsson.service.RentalService;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -18,10 +19,12 @@ public class Start {
     public void start() {
 
         boolean isRunning = true;
+
         Menu menu = new Menu();
         Login login = new Login();
         Inventory inventory = Inventory.getInstance();
         MemberRegistry memberRegistry = MemberRegistry.getInstance();
+        MembershipService membershipService = new MembershipService();
         Rental rental = Rental.getInstance();
         RentalService rentalService = new RentalService(rental);
 
@@ -74,46 +77,47 @@ public class Start {
                         case 2: // Hyra ut
                             menu.clearScreen();
                             PrintColor.cyan(menu.textBlocks());
-                            rental.rentLogic();
+                            rentalService.rentLogic();
                             break;
 
                         case 3: // Visa uthyrda
-                            rental.showRented();
+                            rentalService.showRented();
+                            System.out.print("Tryck [ENTER] för att fortsätta: ");
                             scanner.nextLine();
                             break;
 
                         case 4:
                             // Returnera föremål
-                            rental.returnItem();
+                            rentalService.returnItem();
                             scanner.nextLine();
                             break;
 
                         case 5: // Utlåningshistorik
                             menu.clearScreen();
                             PrintColor.cyan(menu.textBlocks());
-                            memberRegistry.printAllRentalHistories();
-                            System.out.println("Tryck [ENTER] för att fortsätta: ");
+                            membershipService.printAllRentalHistories();
+                            System.out.print("Tryck [ENTER] för att fortsätta: ");
                             scanner.nextLine();
                             break;
 
                         case 6: // Lägg till medlemmar
                             menu.clearScreen();
                             menu.textBlocks();
-                            memberRegistry.createNewMember(memberRegistry, scanner);
+                            membershipService.createNewMember(memberRegistry, scanner);
                             scanner.nextLine();
                             break;
 
                         case 7: // Visa medlemsskap
                             menu.clearScreen();
                             PrintColor.cyan(menu.textBlocks());
-                            memberRegistry.printAndSortMembers();
+                            membershipService.printAndSortMembers();
                             PrintColor.green("────────────────────────────────────────────────────────────────────────────────────");
                             break;
 
                         case 8: // Redigera medlemmar
                             menu.clearScreen();
                             PrintColor.cyan(menu.textBlocks());
-                            memberRegistry.editMember(scanner);
+                            membershipService.editMember(scanner);
                             break;
 
                         case 9: // Summera intäkter
@@ -121,8 +125,10 @@ public class Start {
                             if (totalProfit > 0) {
                                 menu.clearScreen();
                                 PrintColor.cyan(menu.textBlocks());
+                                PrintColor.green("────────────────────────────────────────────────────────────────────────────────────");
                                 PrintColor.green("Beräknad intäkt av nu uthyrda föremål: " + totalProfit + ":-");
-                                System.out.println("Tryck [ENTER] för att fortsätta: ");
+                                PrintColor.green("────────────────────────────────────────────────────────────────────────────────────");
+                                System.out.print("Tryck [ENTER] för att fortsätta: ");
                             } else {
                                 PrintColor.red("Hittade inga uthyrda föremål. Tryck [ENTER] för att fortsätta: ");
                             }

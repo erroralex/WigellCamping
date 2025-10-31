@@ -5,65 +5,50 @@
 █   ██   █████  █████  ████  ██  ████████  ████████  ██████████████  ████  ██        ██  █  █  ██  ███████████  █████  ██    ██  ████  █
 █  ████  ██        ███      ███        ██        ██        █████████      ███  ████  ██  ████  ██  ████████        ██  ███   ███      ██
 ```
+Wigell Camping Medlemsklubb och Uthyrningssystem
+Översikt
 
-# Wigell Camping Medlemsklubb och Uthyrningssystem
+Wigell Camping är en fullt konsolbaserad Java-applikation som modellerar en medlemsklubb med uthyrning av utrustning såsom fordon och campingutrustning. Applikationen möjliggör hantering av medlemmar, uthyrningsobjekt och uthyrningsprocesser på ett intuitivt och strukturerat sätt.
+Funktioner
 
-## Om Projektet
+    Medlemskapshantering: Skapa, redigera, ta bort och visa medlemmar med medlemsnivåer (Student, Standard, Premium) och historik.
 
-Wigell Camping är en konsolbaserad Java-applikation som modellerar en medlemsklubb för uthyrning av utrustning som fordon och campingutrustning. Applikationen är designad för att hantera medlemmar och uthyrningsobjekt på ett strukturerat och användarvänligt sätt.
+    Utrustningshantering: Underhåll av fordon och campingutrustning (tält, ryggsäckar etc.) i inventory.
 
-## Teknisk Översikt
+    Uthyrning och återlämning: Processera uthyrningar och återlämningar kopplade till specifika medlemmar med löpande historikloggning.
 
-Applikationen är uppbyggd kring följande kärnklasser:
+    Prisstrategier: Prisberäkning anpassad efter medlemsnivåer via implementerade PricePolicy-strategier.
 
-- **Member:** Representerar en medlem med unikt ID, namn, medlemsnivå (Student, Standard, Premium) och uthyrningshistorik.
-- **Item (abstrakt klass):** Basklass för uthyrningsobjekt med underklasser som `Vehicle` (fordon) och `Gear` (utrustning).
-- **Rental:** Kopplar en member till ett item under en specifik uthyrningsperiod.
-- **PricePolicy (interface):** Definierar prisberäkningar med konkreta strategier som standard-, student- och premium-priser som reflekterar rabattstrukturer.
-- **Inventory:** Hanterar tillgängliga fordon och utrustning i programminnet via listor.
-- **MemberRegistry:** Ger samlad hantering av medlemslistan, med metoder för skapande, redigering, borttagning och sökning.
-- **RentalService och MembershipService:** Innehåller affärslogik för uthyrningsprocesser, prisberäkningar och medlemsnivåhantering.
-- **Konsolmeny:** Komplett menystruktur som inkluderar att lägga till, ändra, söka och ta bort medlemmar, visa, sortera och hantera inventory, utföra uthyrning och återlämning, samt summera intäkter.
+    Användarvänligt menygränssnitt: Menysystem med färgkodade utskrifter för ökad tydlighet och enkel navigering.
 
-## Uppfyllande av Inlämningsuppgiften
+    Felhantering: Robust skydd mot ogiltig input och logiska fel för stabil användarupplevelse.
 
-Applikationen bör uppfylla samtliga tekniska krav och bedömningskriterier i uppgiften:
+    Intäktsrapportering: Summering av intäkter från uthyrningar via användargränssnittet.
 
-- Körbar och användarinteraktiv konsolprogramvara som körs tills användaren väljer avsluta.
-- Omfattande objektorienterad design med korrekt kapsling (`private` attribut och tillhörande `getters`/`setters`).
-- Abstrakt basklass `Item` med minst två konkreta underklasser `Vehicle` och `Gear`.
-- Implementerat `PricePolicy` interface med minst tre strategier (`StandardPricing`, `StudentPricing`, `PremiumPricing`).
-- Effektiv användning av Java Collections (Listor, Maps) för att hantera medlemsregister och inventory.
-- Robust felhantering för inmatningsfel och logiska fel i menyval och operationer.
-- Tydliga och användarvänliga menygränssnitt med färgkodade utskrifter.
-- Funktionalitet för att lägga till, redigera och ta bort medlemmar, inklusive validerat medlemsnivåval.
-- Funktionalitet för hantering av fordon och utrustning med möjlighet att lägga till och ta bort inventory-objekt.
-- Uthyrning och återlämning kopplade till specifika medlemmar med historikloggning.
-- Prisberäkning baserad på medlemsnivå och uthyrningsperiod.
-- Summering av intäkter från uthyrning presenterad i användargränssnittet.
+Teknisk Arkitektur
 
-## Installation och Körning
+    Objektorienterad design med tydliga klasser för domänmodeller (Member, Item, Vehicle, Gear, Rental).
 
-Programmet kräver Java 8 eller senare. För att köra applikationen:
+    Användning av designmönster som singleton för delade resurser (Inventory, MemberRegistry) och strategi för prisberäkning (PricePolicy interface och dess implementationer).
 
-1. Klona repot.
-2. Kompilera koden med `javac`.
-3. Starta programmet via `java Main` i terminalen.
-4. Följ instruktionerna i den interaktiva konsolmenyn.
+    Java Collections framework (Listor och Maps) för lagring av inventarielistor och medlemshantering.
 
-## Användning
+    Separation av affärslogik (RentalService, MembershipService) från UI och datahantering.
 
-Navigera i menyn för att:
+    Konsolbaserad inmatnings- och utskriftshantering med Scanner och ANSI-färgkodning för feedback.
 
-- Logga in (enkel autentisering för demonstrativa ändamål).
-- Hantera medlemmar (lägg till, redigera, ta bort).
-- Visa och hantera inventory för fordon och utrustning.
-- Utföra uthyrningar och återlämningar.
-- Visa uthyrningshistorik.
-- Summera och visa intäkter.
+Komma igång
+Förutsättningar
 
-## Sammanfattning
+    Java JDK installerat (version 8 eller senare rekommenderas)
 
-Detta projekt speglar förhoppningsvis en fullständig och väldesignad lösning som är anpassad för kursuppgiften i objektorienterad programmering. Det bör demonstrera god användning av designprinciper, felhantering, användarvänlighet och bör uppfylla alla tekniska och kvalitetskrav för Godkänd (G) och Väl Godkänd (VG) betygsnivåer enligt uppgiftens specifikationer.
+    Terminal/kommandoradsmiljö
 
-***
+
+Användning
+
+    Logga in med användarnamn och lösenord (lösenord för test är 0000).
+
+    Navigera i menysystemet för att hantera medlemmar, inventory, hyra ut och återlämna utrustning.
+
+    Följ instruktionerna som visas i konsolen för att utföra valda operationer.
