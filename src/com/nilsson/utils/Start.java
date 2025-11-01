@@ -67,10 +67,11 @@ public class Start {
                     scanner.nextLine();
 
                     switch (menu.menuChoice) {
+
                         case 1: // Lista tillgängliga
                             menu.clearScreen();
                             PrintColor.cyan(menu.textBlocks());
-                            inventory.printInventory();
+                            inventory.inventoryManagement();
                             PrintColor.green("────────────────────────────────────────────────────────────────────────────────────");
                             break;
 

@@ -131,28 +131,41 @@ public class RentalService implements PricePolicy {
 
     public void rentLogic() {
 
+        int choice;
+
         PrintColor.green("\nVill du hyra ut ett fordon eller utrustning? Skriv in [siffra] och [ENTER]");
         PrintColor.cyan("[1]: Fordon \n[2]: Utrustning");
         PrintColor.red("[0]: Avbryt");
-        int choice = start.scanner.nextInt();
-        start.scanner.nextLine();
+
+
+        while (true) {
+
+            if (start.scanner.hasNextInt()) {
+
+                choice = start.scanner.nextInt();
+                start.scanner.nextLine();
+
+                if (choice == 0 || choice == 1 || choice == 2) {
+                    break;
+
+                } else {
+                    PrintColor.red("Ogiltligt val, Var vänlig och försök igen.");
+                    start.scanner.nextLine();
+                }
+            } else {
+                PrintColor.red("Ogiltlig inmatning! Var vänlig och försök igen.");
+                start.scanner.nextLine();
+            }
+        }
 
         switch (choice) {
-
             case 1:
                 rentVehicleSystem();
                 break;
-
             case 2:
                 rentGearSystem();
                 break;
-
             case 0:
-                break;
-
-            default:
-                PrintColor.red("Ogiltligt val, försök igen. Tryck [ENTER] för att fortsätta:");
-                start.scanner.nextLine();
                 break;
         }
     }

@@ -40,16 +40,8 @@ public class Inventory {
         return vehicleList;
     }
 
-    public void setVehicleList(List<Vehicle> vehicleList) {
-        this.vehicleList = vehicleList;
-    }
-
     public List<Gear> getGearList() {
         return gearList;
-    }
-
-    public void setGearList(List<Gear> gearList) {
-        this.gearList = gearList;
     }
 
     public void addVehicle(Vehicle vehicle) {
@@ -137,7 +129,7 @@ public class Inventory {
 
 //──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
-    public void printInventory() {
+    public void inventoryManagement() {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
@@ -186,27 +178,71 @@ public class Inventory {
 
             if (choice == 1) {
 
-                System.out.print("[Husbil] eller [Husvagn]?: ");
-                String vehicleType = scanner.nextLine();
-                boolean hasEngine;
+                String vehicleType;
+                boolean hasEngine = false;
 
-                if (vehicleType.equalsIgnoreCase("Husbil")) {
-                    hasEngine = true;
-                } else if (vehicleType.equalsIgnoreCase("Husvagn")) {
-                    hasEngine = false;
-                } else {
-                    hasEngine = false;
-                    PrintColor.red("Ogiltig typ, sätts som Husvagn per default.");
+                while (true) {
+
+                    System.out.print("[Husbil] eller [Husvagn]?: ");
+                    vehicleType = scanner.nextLine();
+
+                    if (vehicleType.equalsIgnoreCase("Husbil")) {
+                        hasEngine = true;
+                        break;
+
+                    } else if (vehicleType.equalsIgnoreCase("Husvagn")) {
+                        hasEngine = false;
+                        break;
+
+                    } else {
+                        PrintColor.red("Ogiltig typ, var god ange [Husbil] eller [Husvagn]:");
+                    }
                 }
 
                 System.out.print("Ange färg på fordon: ");
                 String color = scanner.nextLine();
 
-                System.out.print("Grundpris per dygn: ");
-                double price = scanner.nextDouble();
-                System.out.print("Max antal passagerare: ");
-                int maxOccupants = scanner.nextInt();
-                scanner.nextLine();
+                double price = -1;
+
+                while (price <= 0) {
+
+                    System.out.print("Grundpris per dygn: ");
+
+                    if (scanner.hasNextDouble()) {
+
+                        price = scanner.nextDouble();
+                        scanner.nextLine();
+
+                        if (price <= 0) {
+
+                            PrintColor.red("Priset måste vara mer än 0. Försök igen.");
+                        }
+                    } else {
+                        PrintColor.red("Ogiltlig inmatning, ange ett korrekt värde.");
+                        scanner.nextLine();
+                    }
+                }
+
+                int maxOccupants = -1;
+                while (maxOccupants <= 0) {
+
+                    System.out.print("Max antal passagerare: ");
+
+                    if (scanner.hasNextInt()) {
+
+                        maxOccupants = scanner.nextInt();
+                        scanner.nextLine();
+
+                        if (maxOccupants <= 0) {
+
+                            PrintColor.red("Kapacitet måste vara mer än 0. Försök igen.");
+                        }
+                    } else {
+                        PrintColor.red("Ogiltlig inmatning, ange ett korrekt värde.");
+                        scanner.nextLine();
+                    }
+                }
+
                 vehicleList.add(new RecreationalVehicle(price, hasEngine, color, maxOccupants));
                 System.out.println("Fordon tillagt!");
 
@@ -225,23 +261,72 @@ public class Inventory {
 
             } else if (choice == 3) {
 
-                System.out.print("[Tält] eller [Ryggsäck]?: ");
-                String gearType = scanner.nextLine();
+                String gearType;
+
+                while (true) {
+
+                    System.out.print("[Tält] eller [Ryggsäck]?: ");
+                    gearType = scanner.nextLine();
+
+                    if (gearType.equalsIgnoreCase("Tält")) {
+                        break;
+
+                    } else if (gearType.equalsIgnoreCase("Ryggsäck")) {
+                        break;
+
+                    } else {
+                        PrintColor.red("Ogiltlig typ, var god ange [Tält] eller [Ryggsäck]:");
+                    }
+                }
                 int maxOccupants;
 
                 if (gearType.equalsIgnoreCase("Tält")) {
-                    System.out.print("Hur många personer får plats?");
-                    maxOccupants = scanner.nextInt();
-                    scanner.nextLine();
-                } else if (gearType.equalsIgnoreCase("Ryggsäck")) {
+
                     maxOccupants = 0;
+
+                    while (maxOccupants < 1) {
+
+                        System.out.print("Hur många personer får plats?");
+
+                        if (scanner.hasNextInt()) {
+
+                            maxOccupants = scanner.nextInt();
+                            scanner.nextLine();
+
+                            if (maxOccupants < 1) {
+
+                                PrintColor.red("Antal personer måste vara minst 1. Försök igen.");
+                            }
+                        } else {
+                            PrintColor.red("Ogiltig inmatning, var god ange ett heltal.");
+                            scanner.nextLine();
+                        }
+                    }
+
                 } else {
                     maxOccupants = 0;
-                    PrintColor.red("Ogiltig typ, sätts som Ryggsäck per default.");
                 }
 
-                System.out.print("Ange pris per dygn: ");
-                double price = scanner.nextDouble();
+                double price = - 1;
+
+                while (price <= 0) {
+
+                    System.out.print("Grundpris per dygn: ");
+
+                    if (scanner.hasNextDouble()) {
+
+                        price = scanner.nextDouble();
+                        scanner.nextLine();
+
+                        if (price <= 0) {
+
+                            PrintColor.red("Priset måste vara mer än 0. Försök igen.");
+                        }
+                    } else {
+                        PrintColor.red("Ogiltlig inmatning, ange ett korrekt värde.");
+                        scanner.nextLine();
+                    }
+                }
 
                 gearList.add(new Gear(price, maxOccupants));
                 System.out.println("Utrustning tillagd!");
